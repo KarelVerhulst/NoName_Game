@@ -23,6 +23,16 @@ public class IdleState : State
         {
             _character.SetState(new JumpState(_character));
         }
+
+        if (InputController.IsButtonAPressed())
+        {
+            _character.SetState(new MeleeAttackState(_character));
+        }
+
+        if (InputController.GetRightTrigger() != 0)
+        {
+            _character.SetState(new MagicAttackState(_character));
+        }
     }
 
     public override void OnStateEnter()

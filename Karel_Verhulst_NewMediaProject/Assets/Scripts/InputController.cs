@@ -34,7 +34,7 @@ public static class InputController
         return Input.GetAxis("Xbox_Right_Trigger"); 
     }
 
-    public static float GetLefttTrigger()
+    public static float GetLeftTrigger()
     {
         return Input.GetAxis("Xbox_Left_Trigger");
     }

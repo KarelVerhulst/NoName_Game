@@ -5,13 +5,12 @@ using UnityEngine;
 public class JumpState : State
 {
     private Vector3 _moveDirection = Vector3.zero;
-    private bool _isJumping;
 
     private MovementController _mc;
 
     public JumpState(ICharacter character) : base(character)
     {
-        _isJumping = false;
+      
     }
 
     public override void Tick()
@@ -20,11 +19,11 @@ public class JumpState : State
         if (_character.CC.isGrounded)
         {
             _mc.UpdateMovement(InputController.GetLeftJoystick(),true);
-            _isJumping = true;
         }
         else
         {
             _mc.UpdateMovement(InputController.GetLeftJoystick(), false);
+
             if (_character.CC.isGrounded)
             {
                 if (InputController.GetLeftJoystick() != Vector3.zero)
