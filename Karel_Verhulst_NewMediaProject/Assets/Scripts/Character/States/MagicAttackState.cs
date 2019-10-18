@@ -10,7 +10,7 @@ public class MagicAttackState : State
 
     public override void Tick()
     {
-        Debug.Log("Magic Attack");
+        //Debug.Log("Magic Attack");
 
         if (InputController.GetLeftJoystick() != Vector3.zero)
         {

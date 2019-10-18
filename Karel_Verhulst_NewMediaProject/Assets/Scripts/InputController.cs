@@ -55,4 +55,14 @@ public static class InputController
     {
         return Input.GetButtonDown(_nameButtonX);
     }
+
+    public static bool IsStartButtonPressed()
+    {
+        return Input.GetButtonDown("Xbox_Start_Button");
+    }
+
+    public static bool IsSelectButtonPressed()
+    {
+        return Input.GetButtonDown("Xbox_Select_Button");
+    }
 }

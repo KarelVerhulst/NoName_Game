@@ -29,6 +29,8 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, ICharacter
     public float Gravity { get { return _gravity; } }
     public Vector3 Movement { get; set; }
 
+    public bool IsCharacterSplit { get; set; }
+
     void Awake()
     {
         _cc = this.GetComponent<CharacterController>();

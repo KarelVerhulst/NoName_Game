@@ -17,7 +17,7 @@ public class DragonBehaviour : BaseCharacterBehaviour
     {
         base.Update();
 
-        if (InputController.IsButtonXPressed())
+        if (InputController.IsButtonXPressed() && !this.IsCharacterSplit)
         {
             SetState(new TransformState(this, _wolf));
         }

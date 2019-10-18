@@ -10,7 +10,7 @@ public class MeleeAttackState : State
 
     public override void Tick()
     {
-        Debug.Log("Melee attack");
+        //Debug.Log("Melee attack");
 
         if (InputController.GetLeftJoystick() != Vector3.zero)
         {
