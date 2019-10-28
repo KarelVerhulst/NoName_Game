@@ -23,7 +23,6 @@ public class MovementController
             ApplyMovement(movement);
             RotateCharacterToDirection();
             Jump(jump);
-            
         }
 
         ApplyGround();
