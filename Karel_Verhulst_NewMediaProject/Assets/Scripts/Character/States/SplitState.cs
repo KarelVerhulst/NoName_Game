@@ -17,7 +17,7 @@ public class SplitState : State
 
         //throw new System.NotImplementedException();
 
-        _character.SetState(new IdleState(_character));
+        //_character.SetState(new IdleState(_character));
     }
 
     public override void OnStateEnter()
@@ -25,6 +25,15 @@ public class SplitState : State
         base.OnStateEnter();
         _character.IsCharacterSplit = true;
         _character.transform.position = _newPosition.position;
+
+        _character.StartCoroutine(test());
         
+    }
+
+    IEnumerator test()
+    {
+        yield return new WaitForSeconds(1f);
+
+        _character.SetState(new IdleState(_character));
     }
 }
