@@ -27,7 +27,7 @@ public class WalkState : State
             _character.SetState(new IdleState(_character));
         }
 
-        if (InputController.IsButtonBPressed())
+        if (InputController.IsButtonYPressed())
         {
             _character.SetState(new JumpState(_character));
         }
@@ -88,7 +88,7 @@ public class WalkState : State
 
     private void Jump()
     {
-        if (InputController.IsButtonBPressed())
+        if (InputController.IsButtonYPressed())
         {
             _character.SetState(new JumpState(_character));
         }

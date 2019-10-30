@@ -19,7 +19,7 @@ public class IdleState : State
             _character.SetState(new WalkState(_character));
         }
 
-        if (InputController.IsButtonBPressed())
+        if (InputController.IsButtonYPressed())
         {
             _character.SetState(new JumpState(_character));
         }

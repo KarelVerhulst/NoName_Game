@@ -8,6 +8,7 @@ public static class InputController
     private static string _nameButtonA = "XboxA_Button";
     private static string _nameButtonB = "XboxB_Button";
     private static string _nameButtonX = "XboxX_Button";
+    private static string _nameButtonY = "XboxY_Button";
 
     // axis input
     public static Vector3 GetLeftJoystick()
@@ -54,6 +55,11 @@ public static class InputController
     public static bool IsButtonXPressed()
     {
         return Input.GetButtonDown(_nameButtonX);
+    }
+
+    public static bool IsButtonYPressed()
+    {
+        return Input.GetButtonDown(_nameButtonY);
     }
 
     public static bool IsStartButtonPressed()
