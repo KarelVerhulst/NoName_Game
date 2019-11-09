@@ -13,12 +13,17 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, ICharacter
     protected float _jumpSpeed = 8.0f;
     [SerializeField]
     protected float _gravity = 20.0f;
+    [SerializeField]
+    private LayerMask _mapLayerMask;
 
     private State _currentState;
 
     // Properties
     private CharacterController _cc;
     public CharacterController CC { get { return _cc; } }
+
+    private Animator _animator;
+    public Animator Animator { get { return _animator; } }
 
     private Transform _camera;
     public Transform CameraTransform { get { return _camera; } }
@@ -35,6 +40,7 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, ICharacter
     {
         _cc = this.GetComponent<CharacterController>();
         _camera = Camera.main.transform;
+        _animator = this.GetComponent<Animator>();
    
         SetState(new IdleState(this));
     }
@@ -53,5 +59,16 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, ICharacter
 
         if (_currentState != null)
             _currentState.OnStateEnter();
+    }
+
+    public float GetJumpDistanceToGround()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(this.transform.position, Vector3.down, out hit, 100, _mapLayerMask))
+        {
+            return (hit.point - this.transform.position).magnitude;
+        }
+
+        return 0;
     }
 }

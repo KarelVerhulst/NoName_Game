@@ -9,9 +9,9 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: MAT_Character
   m_Shader: {fileID: 4800000, guid: 72917e9d6af057b4eb9e839bcdda3658, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: FADE
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -40,10 +40,26 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 637ce74f709e77e43af923ca6f6c2d08, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -56,24 +72,51 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Brightness: 2
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _DstFactor: 1
+    - _Edge: 0.1
+    - _EmisIntensity: 3
+    - _FADE: 1
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0
     - _GlossyReflections: 1
+    - _GlowBrightness: 3
+    - _HARD: 0
+    - _INVERT: 0
     - _Metallic: 0
     - _Mode: 0
+    - _NORMALS: 0
+    - _NScale: 1
     - _OcclusionStrength: 1
+    - _OffsetFade: 1
+    - _Opacity: 10
+    - _Outline: 0.005
+    - _OutlineFixed: 2
+    - _OutlineZ: -0.05
     - _Parallax: 0.02
+    - _RimPower: 3
+    - _RimPower2: 3
+    - _Scale: 0.01
+    - _Smooth: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Speed: 1
+    - _SpeedX: 0
+    - _SpeedY: 3
     - _SrcBlend: 1
+    - _SrcFactor: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.5855287, g: 0.7651735, b: 0.8113208, a: 1}
-    - _Color: {r: 0.7924528, g: 0.10840159, b: 0.10840159, a: 1}
+    - _AlbedoColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color2: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _ColorR: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0.18039216, g: 0.16470589, b: 0.16470589, a: 1}
+    - _RimColor: {r: 0, g: 0.8, b: 0.8, a: 0}
+    - _RimColorMask: {r: 0, g: 0.19, b: 0.16, a: 0}

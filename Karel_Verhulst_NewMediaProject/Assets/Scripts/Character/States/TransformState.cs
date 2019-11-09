@@ -9,19 +9,20 @@ public class TransformState : State
     public TransformState(ICharacter character, GameObject newCharacter) : base(character)
     {
         _newCharacter = newCharacter;
+        _newCharacter.transform.position = _character.transform.position;
+        _newCharacter.transform.rotation = _character.transform.rotation;
+
     }
 
     public override void Tick()
     {
         _newCharacter.SetActive(true);
-        _newCharacter.transform.position = _character.transform.position;
-        _newCharacter.transform.rotation = _character.transform.rotation;
         _character.gameObject.SetActive(false);
-
+        
         _character.SetState(new IdleState(_character));
     }
 
-    public override void OnStateEnter()
+public override void OnStateEnter()
     {
         //Debug.Log("OnStateEnter Transform | " + _character.name);
     }
