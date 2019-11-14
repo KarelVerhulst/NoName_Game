@@ -15,7 +15,7 @@ Shader "Custom/CharacterShader_01" {
 		SubShader
 			{
 
-				Tags { "RenderType" = "Opaque" }
+				Tags { "RenderType" = "Opaque"}
 				LOD 200
 
 				//Render a pass if anything is infront 
@@ -26,6 +26,7 @@ Shader "Custom/CharacterShader_01" {
 					Cull Front
 					CGPROGRAM
 
+					#pragma Standard fullforwardshadows
 					#pragma vertex vert
 					#pragma fragment frag
 				// make fog work
