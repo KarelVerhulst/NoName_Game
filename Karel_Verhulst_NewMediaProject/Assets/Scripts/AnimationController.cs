@@ -14,6 +14,7 @@ public class AnimationController
     private int _isRunningParam = Animator.StringToHash("IsRunning");
     private int _isJumpParam = Animator.StringToHash("IsJumping");
     private int _jumpDistanceToGroundParam = Animator.StringToHash("JumpDistanceToGround");
+    private int _isDeadParam = Animator.StringToHash("IsDeath");
 
     public void MoveAnimation(bool isRunning)
     {
@@ -24,5 +25,10 @@ public class AnimationController
     {
         _animator.SetBool(_isJumpParam, isJump);
         _animator.SetFloat(_jumpDistanceToGroundParam, distanceToGround);
+    }
+
+    public void DeadAnimation(bool isDead)
+    {
+        _animator.SetBool(_isDeadParam, isDead);
     }
 }

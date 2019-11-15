@@ -5,102 +5,51 @@ using UnityEngine;
 public class TestTrap : MonoBehaviour
 {
     [SerializeField]
-    private Material _disolveMaterial = null;
+    private Transform _shootObject = null;
     [SerializeField]
-    private float _waitTimer = 1;
+    private Transform projectilePosition = null;
     [SerializeField]
-    private float _speed = 1;
+    private GameObject projectile = null;
     [SerializeField]
-    private float _time = 1;
-    [SerializeField]
-    private bool _repeat = true;
+    private float _maxTimer = 1;
 
-    private BoxCollider _boxCollider = null;
-    private bool _isActionDissolve = true;
-    private float _disolveTimer = 0;
-    private float _rate = 0;
+    private float _timer;
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        _disolveMaterial.SetFloat("_Amount", 0);
-        _rate = (1.0f / _time) * _speed;
-        _boxCollider = this.GetComponent<BoxCollider>();
-        StartCoroutine(Action());
-    }
-
-    private IEnumerator Action()
-    {
-        while (_repeat)
-        {
-            if (_isActionDissolve)
-            {
-                yield return new WaitForSeconds(_waitTimer);
-
-                yield return Dissolve();
-
-            }
-            else
-            {
-                yield return new WaitForSeconds(_waitTimer);
-
-                yield return Resolve();
-            }
-
-            yield return null;
-        }
-    }
-
-    private IEnumerator Dissolve()
-    {
-        float time = 0.0f;
         
-        while (time < 1.0f)
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        _timer = _maxTimer;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
         {
-            time += Time.deltaTime * _rate;
+            _shootObject.LookAt(other.transform);
+            _shootObject.eulerAngles = new Vector3(0, _shootObject.transform.eulerAngles.y, 0);
 
-            ChangeMaterialt(time);
-
-            if (time >= 0.5)
-            {
-                _boxCollider.isTrigger = true;
-            }
-
-            if (time >= 1)
-            {
-                _isActionDissolve = false;
-            }
-
-            yield return null;
+            ShootObject();
         }
     }
 
-    private IEnumerator Resolve()
+    private void ShootObject()
     {
-        float time = 1.0f;
+        _timer -= Time.deltaTime;
+
+        if (_timer <= 0)
+        {
+            GameObject bullet = Instantiate(projectile, projectilePosition.position, Quaternion.identity) as GameObject;
+            bullet.GetComponent<BulletBehaviour>().ShootPostion = projectilePosition.forward;
+                
+            _timer = _maxTimer;
+        }
         
-        while (time > 0.0f)
-        {
-            time -= Time.deltaTime * _rate;
-
-            ChangeMaterialt(time);
-
-            if (time <= 0.5)
-            {
-                _boxCollider.isTrigger = false;
-            }
-
-            if (time <= 0)
-            {
-                _isActionDissolve = true;
-            }
-
-            yield return null;
-        }
-    }
-
-    private void ChangeMaterialt(float time)
-    {
-        _disolveMaterial.SetFloat("_Amount", time);
     }
 }

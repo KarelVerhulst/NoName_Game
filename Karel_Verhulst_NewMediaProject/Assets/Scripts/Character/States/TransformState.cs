@@ -11,7 +11,6 @@ public class TransformState : State
         _newCharacter = newCharacter;
         _newCharacter.transform.position = _character.transform.position;
         _newCharacter.transform.rotation = _character.transform.rotation;
-
     }
 
     public override void Tick()

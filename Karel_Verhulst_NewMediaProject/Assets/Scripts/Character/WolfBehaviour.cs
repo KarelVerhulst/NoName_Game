@@ -18,7 +18,7 @@ public class WolfBehaviour : BaseCharacterBehaviour
     {
         base.Update();
 
-        if (InputController.IsButtonXPressed() && !this.IsCharacterSplit)
+        if (InputController.IsButtonXPressed() && !this.IsCharacterSplit && this.GetComponentInParent<HealthBehaviour>().Health > 0)
         {
             SetState(new TransformState(this, _dragon));
         }

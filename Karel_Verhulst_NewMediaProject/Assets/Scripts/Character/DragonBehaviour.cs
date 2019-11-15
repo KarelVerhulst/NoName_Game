@@ -10,14 +10,14 @@ public class DragonBehaviour : BaseCharacterBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
     }
-
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
 
-        if (InputController.IsButtonXPressed() && !this.IsCharacterSplit)
+        if (InputController.IsButtonXPressed() && !this.IsCharacterSplit && this.GetComponentInParent<HealthBehaviour>().Health > 0)
         {
             SetState(new TransformState(this, _wolf));
         }
