@@ -17,15 +17,15 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, ICharacter
     private LayerMask _mapLayerMask;
 
     private State _currentState;
-
+    
     // Properties
     private CharacterController _cc;
     public CharacterController CC { get { return _cc; } }
 
-    private Animator _animator;
+    private Animator _animator = null;
     public Animator Animator { get { return _animator; } }
 
-    private Transform _camera;
+    private Transform _camera = null;
     public Transform CameraTransform { get { return _camera; } }
 
     public float MoveSpeed { get { return _moveSpeed; } }
@@ -44,7 +44,7 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, ICharacter
    
         SetState(new IdleState(this));
     }
-    
+
     protected virtual void Update()
     {
         _currentState.Tick();

@@ -22,8 +22,6 @@ public class BulletBehaviour : MonoBehaviour
     void Start()
     {
         StartCoroutine(ScaleProjectile());
-
-       
     }
 
     // Update is called once per frame

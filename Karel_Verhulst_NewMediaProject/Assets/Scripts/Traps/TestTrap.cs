@@ -42,7 +42,7 @@ public class TestTrap : MonoBehaviour
     private void ShootObject()
     {
         _timer -= Time.deltaTime;
-
+        
         if (_timer <= 0)
         {
             GameObject bullet = Instantiate(projectile, projectilePosition.position, Quaternion.identity) as GameObject;
