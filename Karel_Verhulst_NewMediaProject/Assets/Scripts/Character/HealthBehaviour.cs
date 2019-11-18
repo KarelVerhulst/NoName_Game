@@ -3,14 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-static class Extension
-{
-    public static bool IsEqualTo(this Color me, Color other)
-    {
-        return me.r == other.r && me.g == other.g && me.b == other.b && me.a == other.a;
-    }
-}
-
 public class HealthBehaviour : MonoBehaviour
 {
     [SerializeField]
@@ -21,11 +13,6 @@ public class HealthBehaviour : MonoBehaviour
     void Start()
     {
         Health = _arrayOfHealth.Length;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     public void ChangeHealth(int healthIndex)

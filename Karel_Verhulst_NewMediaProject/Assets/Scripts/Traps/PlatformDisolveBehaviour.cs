@@ -19,7 +19,6 @@ public class PlatformDisolveBehaviour : MonoBehaviour
 
     private BoxCollider _boxCollider = null;
     private bool _isActionDissolve = true;
-    private float _disolveTimer = 0;
     private float _rate = 0;
 
     // Start is called before the first frame update

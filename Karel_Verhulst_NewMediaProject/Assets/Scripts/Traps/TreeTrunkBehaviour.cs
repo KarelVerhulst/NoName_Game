@@ -5,11 +5,11 @@ using UnityEngine;
 public class TreeTrunkBehaviour : MonoBehaviour
 {
     [SerializeField]
-    private Vector3 _minScale;
+    private Vector3 _minScale = Vector3.zero;
     [SerializeField]
-    private Vector3 _maxScale;
+    private Vector3 _maxScale = Vector3.zero;
     [SerializeField]
-    private bool _repeatable;
+    private bool _repeatable = false;
     [SerializeField]
     private float _speed = 2f;
     [SerializeField]

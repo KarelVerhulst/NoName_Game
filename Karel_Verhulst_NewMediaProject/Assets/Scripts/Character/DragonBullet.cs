@@ -9,12 +9,12 @@ public class DragonBullet : MonoBehaviour
     [SerializeField]
     private int _attackDamage = 1;
 
-
-    public float maxSize;
-    public float growFactor;
-    public float waitTime;
-
-
+    [SerializeField]
+    private float _maxSize = 0;
+    [SerializeField]
+    private float _growFactor = 0;
+    [SerializeField]
+    private float _waitTime = 0;
 
     public Vector3 ShootPostion { get; set; }
     // Start is called before the first frame update
@@ -45,26 +45,26 @@ public class DragonBullet : MonoBehaviour
         {
             // we scale all axis, so they will have the same value, 
             // so we can work with a float instead of comparing vectors
-            while (maxSize > transform.localScale.x)
+            while (_maxSize > transform.localScale.x)
             {
                 timer += Time.deltaTime;
-                transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * growFactor;
+                transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * _growFactor;
                 yield return null;
             }
             // reset the timer
 
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(_waitTime);
 
             timer = 0;
             while (1 < transform.localScale.x)
             {
                 timer += Time.deltaTime;
-                transform.localScale -= new Vector3(1, 1, 1) * Time.deltaTime * growFactor;
+                transform.localScale -= new Vector3(1, 1, 1) * Time.deltaTime * _growFactor;
                 yield return null;
             }
 
             timer = 0;
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(_waitTime);
         }
     }
 }

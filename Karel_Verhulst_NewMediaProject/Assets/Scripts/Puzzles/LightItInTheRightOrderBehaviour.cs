@@ -8,7 +8,7 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
     private List<GameObject> _listOfEnemies = new List<GameObject>();
 
     private int _index = 0;
-    private List<bool> _test = new List<bool>();
+    private List<bool> _isHitList = new List<bool>();
     private List<bool> _trueList = new List<bool>();
 
     private bool test;
@@ -16,7 +16,8 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(_listOfEnemies.Count);
+        //first one in the list you can hit it
+        _listOfEnemies[0].GetComponentInChildren<CheckCurrentObjectIsTrigger>().CanIHit = true;
 
         for (int i = 0; i < _listOfEnemies.Count; i++)
         {
@@ -34,7 +35,7 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
             
             if (test)
             {
-                _test.Add(test);
+                _isHitList.Add(test);
                 _index++;
                 //Debug.Log(_index);
                 if (_index != _listOfEnemies.Count)
@@ -45,7 +46,11 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
         }
 
         //if all the enemies are true you defeat them all in the right order !!
-        Debug.Log(CheckArrays(_test, _trueList));
+        if (CheckArrays(_isHitList, _trueList))
+        {
+            Debug.Log("Correct order Do Something");
+        }
+        
 
     }
 

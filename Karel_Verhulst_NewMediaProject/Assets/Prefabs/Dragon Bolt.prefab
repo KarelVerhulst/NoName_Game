@@ -124,6 +124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectileSpeed: 30
   _attackDamage: 1
-  maxSize: 1
-  growFactor: 0.4
-  waitTime: 0.5
+  _maxSize: 1
+  _growFactor: 0.5
+  _waitTime: 0.2

@@ -6,17 +6,22 @@ public class DragonBehaviour : BaseCharacterBehaviour
 {
     [SerializeField]
     private GameObject _wolf = null;
+    [SerializeField]
+    private float _waitTime = 1;
+    
+    [SerializeField]
+    private Transform _shootPosition = null;
+    [SerializeField]
+    private GameObject _projectile = null;
 
+    private float _time = 0;
 
-    public Transform _shootPosition = null;
-    public GameObject _projectile = null;
-
-    private float time = 1;
+    bool oldTriggerHeld;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _time = _waitTime;
     }
     // Update is called once per frame
     protected override void Update()
@@ -28,25 +33,62 @@ public class DragonBehaviour : BaseCharacterBehaviour
             SetState(new TransformState(this, _wolf));
         }
 
-        if (InputController.GetRightTrigger() != 0)
+        //if (InputController.GetRightTrigger() != 0)
+        //{
+        //    _time -= Time.deltaTime;
+
+        //    if (_time <= 0)
+        //    {
+        //        GameObject bullet = Instantiate(_projectile, _shootPosition.position, Quaternion.identity) as GameObject;
+        //        bullet.GetComponent<DragonBullet>().ShootPostion = _shootPosition.forward;
+
+        //        SetState(new MagicAttackState(this));
+
+        //        _time = _waitTime;
+        //    }
+
+        //}
+        
+        bool newTriggerHeld = InputController.GetRightTrigger() > 0f;
+        if (newTriggerHeld )
         {
-            time -= Time.deltaTime;
-
-            if (time <= 0)
+            
+            if (!this.GetComponentInParent<ManaBehaviour>().IsManaEmpty)
             {
-                GameObject bullet = Instantiate(_projectile, _shootPosition.position, Quaternion.identity) as GameObject;
-                bullet.GetComponent<DragonBullet>().ShootPostion = _shootPosition.forward;
+                this.GetComponentInParent<ManaBehaviour>().TrySpendMana(1);
 
-                SetState(new MagicAttackState(this));
+                _time -= Time.deltaTime;
 
-                time = 1;
+                if (_time <= 0)
+                {
+
+                    GameObject bullet = Instantiate(_projectile, _shootPosition.position, Quaternion.identity) as GameObject;
+                    bullet.GetComponent<DragonBullet>().ShootPostion = _shootPosition.forward;
+
+                    SetState(new MagicAttackState(this));
+
+                    _time = _waitTime;
+                }
             }
             
         }
-
-        if (InputController.GetLeftJoystick() != Vector3.zero)
+        else
         {
-            SetState(new WalkState(this));
+            this.GetComponentInParent<ManaBehaviour>().IsManaEmpty = false;
+            this.GetComponentInParent<ManaBehaviour>().FillManaAmount();
         }
+
+        //if (!oldTriggerHeld && newTriggerHeld) {
+        //    GameObject bullet = Instantiate(_projectile, _shootPosition.position, Quaternion.identity) as GameObject;
+        //    bullet.GetComponent<DragonBullet>().ShootPostion = _shootPosition.forward;
+            
+        //    SetState(new MagicAttackState(this));
+
+        //}
+
+        //oldTriggerHeld = newTriggerHeld;
+
+
+
     }
 }

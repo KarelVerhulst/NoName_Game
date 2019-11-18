@@ -12,7 +12,7 @@ public class MagicAttackState : State
    
     public override void Tick()
     {
-        
+
 
         if (InputController.GetLeftJoystick() != Vector3.zero)
         {
@@ -21,6 +21,11 @@ public class MagicAttackState : State
         else
         {
             _character.SetState(new IdleState(_character));
+        }
+
+        if (InputController.IsButtonYPressed())
+        {
+            _character.SetState(new JumpState(_character));
         }
     }
 

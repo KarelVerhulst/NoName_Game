@@ -5,9 +5,6 @@ using UnityEngine;
 public class WalkState : State
 {
     private Vector3 _moveDirection = Vector3.zero;
-    private float _vertical = 0.0f;
-    private float _horizontal = 0.0f;
-    private float _inputAmount;
 
     private MovementController _mc;
     private AnimationController _ac;

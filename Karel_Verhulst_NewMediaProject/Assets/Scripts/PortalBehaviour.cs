@@ -5,13 +5,13 @@ using UnityEngine;
 public class PortalBehaviour : MonoBehaviour
 {
     [SerializeField]
-    private Transform _newPosition;
+    private Transform _newPosition = null;
     [SerializeField]
-    private Transform _ghostPosition;
+    private Transform _ghostPosition = null;
     [SerializeField]
-    private GameObject _dragonAI;
+    private GameObject _dragonAI = null;
     [SerializeField]
-    private GameObject _wolfAI;
+    private GameObject _wolfAI = null;
     // Start is called before the first frame update
     void Start()
     {
