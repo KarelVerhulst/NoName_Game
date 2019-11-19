@@ -14,7 +14,7 @@ public class IdleState : State
     public override void Tick()
     {
         if (_character.GetComponentInParent<HealthBehaviour>().Health <= 0)
-        {
+        { 
             _ac.DeadAnimation(true);
 
             return;

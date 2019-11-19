@@ -16,7 +16,7 @@ public class DragonBehaviour : BaseCharacterBehaviour
 
     private float _time = 0;
 
-    bool oldTriggerHeld;
+    private bool oldTriggerHeld;
 
     // Start is called before the first frame update
     void Start()
@@ -28,26 +28,11 @@ public class DragonBehaviour : BaseCharacterBehaviour
     {
         base.Update();
         
-        if (InputController.IsButtonXPressed() && !this.IsCharacterSplit && this.GetComponentInParent<HealthBehaviour>().Health > 0)
+        if (this.GetComponentInParent<TransformBehaviour>().IsTransformAvailable && InputController.IsButtonXPressed() && !this.IsCharacterSplit && this.GetComponentInParent<HealthBehaviour>().Health > 0)
         {
             SetState(new TransformState(this, _wolf));
+            this.GetComponentInParent<TransformBehaviour>().TransformAmount = 0;
         }
-
-        //if (InputController.GetRightTrigger() != 0)
-        //{
-        //    _time -= Time.deltaTime;
-
-        //    if (_time <= 0)
-        //    {
-        //        GameObject bullet = Instantiate(_projectile, _shootPosition.position, Quaternion.identity) as GameObject;
-        //        bullet.GetComponent<DragonBullet>().ShootPostion = _shootPosition.forward;
-
-        //        SetState(new MagicAttackState(this));
-
-        //        _time = _waitTime;
-        //    }
-
-        //}
         
         bool newTriggerHeld = InputController.GetRightTrigger() > 0f;
         if (newTriggerHeld )
@@ -55,7 +40,7 @@ public class DragonBehaviour : BaseCharacterBehaviour
             
             if (!this.GetComponentInParent<ManaBehaviour>().IsManaEmpty)
             {
-                this.GetComponentInParent<ManaBehaviour>().TrySpendMana(1);
+                this.GetComponentInParent<ManaBehaviour>().TrySpendMana(_spendingAmountOfMana);
 
                 _time -= Time.deltaTime;
 

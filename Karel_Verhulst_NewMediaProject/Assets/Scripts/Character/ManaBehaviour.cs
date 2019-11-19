@@ -28,7 +28,7 @@ public class ManaBehaviour : MonoBehaviour
         IsManaEmpty = false;
     }
     
-    public void TrySpendMana(int amount)
+    public void TrySpendMana(float amount)
     {
         //if (_manaAmount <= 1.5f)
         //{

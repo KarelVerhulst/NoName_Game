@@ -15,6 +15,8 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, ICharacter
     protected float _gravity = 20.0f;
     [SerializeField]
     private LayerMask _mapLayerMask = 0;
+    [SerializeField]
+    protected float _spendingAmountOfMana = 1;
 
     private State _currentState;
     

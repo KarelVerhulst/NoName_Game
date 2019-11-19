@@ -21,8 +21,9 @@ public class TransformState : State
         _character.SetState(new IdleState(_character));
     }
 
-public override void OnStateEnter()
+    public override void OnStateEnter()
     {
+        base.OnStateEnter();
         //Debug.Log("OnStateEnter Transform | " + _character.name);
     }
 }
