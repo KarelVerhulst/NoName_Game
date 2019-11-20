@@ -13,16 +13,13 @@ public class TestTrap : MonoBehaviour
     [SerializeField]
     private float _maxTimer = 1;
 
+    [SerializeField]
+    private GameObject _shield = null;
+    [SerializeField]
+    private bool _useShieldOnTrap = false;
+
     private float _timer;
-
     
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         _timer = _maxTimer;
@@ -36,6 +33,30 @@ public class TestTrap : MonoBehaviour
             _shootObject.eulerAngles = new Vector3(0, _shootObject.transform.eulerAngles.y, 0);
 
             ShootObject();
+
+            if (_useShieldOnTrap)
+            {
+                if (other.GetComponent<DragonBehaviour>())
+                {
+                    _shield.SetActive(true);
+                }
+                else
+                {
+                    _shield.SetActive(false);
+                }
+            }
+            
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            if (_useShieldOnTrap)
+            {
+                _shield.SetActive(false);
+            }
         }
     }
 

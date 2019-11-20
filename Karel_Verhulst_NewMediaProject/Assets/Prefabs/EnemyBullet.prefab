@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 5542561838441207220}
   - component: {fileID: 9163297280119419291}
   m_Layer: 0
-  m_Name: Sphere
-  m_TagString: Untagged
+  m_Name: EnemyBullet
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileSpeed: 5
+  _attackDamage: 1
   maxSize: 1
   growFactor: 0.4
   waitTime: 1

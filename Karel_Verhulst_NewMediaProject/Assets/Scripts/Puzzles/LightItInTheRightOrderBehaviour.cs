@@ -6,12 +6,17 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> _listOfEnemies = new List<GameObject>();
+    [SerializeField]
+    private Transform _puzzleViewCamera = null;
 
     private int _index = 0;
     private List<bool> _isHitList = new List<bool>();
     private List<bool> _trueList = new List<bool>();
 
     private bool test;
+
+    private float _timer = 5;
+    private Transform _oldCameraPosition = null;
 
     // Start is called before the first frame update
     void Start()
@@ -35,20 +40,34 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
             
             if (test)
             {
+                
                 _isHitList.Add(test);
                 _index++;
                 //Debug.Log(_index);
                 if (_index != _listOfEnemies.Count)
                 {
+                    _oldCameraPosition = Camera.main.transform;
                     _listOfEnemies[_index].GetComponentInChildren<CheckCurrentObjectIsTrigger>().CanIHit = true;
                 }
+
+                
             }
         }
 
         //if all the enemies are true you defeat them all in the right order !!
         if (CheckArrays(_isHitList, _trueList))
         {
-            Debug.Log("Correct order Do Something");
+            if (_timer <= 0)
+            {
+                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _oldCameraPosition.position, Time.deltaTime * 50);
+            }
+            else
+            {
+                _timer -= Time.deltaTime;
+                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _puzzleViewCamera.position, Time.deltaTime * 50);
+            }
+            //Debug.Log("Correct order Do Something");
+            
         }
         
 

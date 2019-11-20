@@ -31,11 +31,10 @@ public class DragonBehaviour : BaseCharacterBehaviour
         if (this.GetComponentInParent<TransformBehaviour>().IsTransformAvailable && InputController.IsButtonXPressed() && !this.IsCharacterSplit && this.GetComponentInParent<HealthBehaviour>().Health > 0)
         {
             SetState(new TransformState(this, _wolf));
-            this.GetComponentInParent<TransformBehaviour>().TransformAmount = 0;
         }
         
         bool newTriggerHeld = InputController.GetRightTrigger() > 0f;
-        if (newTriggerHeld )
+        if (newTriggerHeld && this.GetComponentInParent<HealthBehaviour>().Health > 0)
         {
             
             if (!this.GetComponentInParent<ManaBehaviour>().IsManaEmpty)

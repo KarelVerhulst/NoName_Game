@@ -8,6 +8,10 @@ public class WolfBehaviour : BaseCharacterBehaviour
     private GameObject _dragon = null;
     [SerializeField]
     private float _waitTime = 1;
+    [SerializeField]
+    private GameObject _shield = null;
+    
+    public bool IsShieldActive { get; set; }
 
     private float _time = 0;
 
@@ -25,34 +29,36 @@ public class WolfBehaviour : BaseCharacterBehaviour
         if (this.GetComponentInParent<TransformBehaviour>().IsTransformAvailable && InputController.IsButtonXPressed() && !this.IsCharacterSplit && this.GetComponentInParent<HealthBehaviour>().Health > 0)
         {
             SetState(new TransformState(this, _dragon));
-            this.GetComponentInParent<TransformBehaviour>().TransformAmount = 0;
         }
 
         bool newTriggerHeld = InputController.GetRightTrigger() > 0f;
-        if (newTriggerHeld)
+        if (newTriggerHeld && this.GetComponentInParent<HealthBehaviour>().Health > 0)
         {
 
             if (!this.GetComponentInParent<ManaBehaviour>().IsManaEmpty)
             {
                 this.GetComponentInParent<ManaBehaviour>().TrySpendMana(_spendingAmountOfMana);
 
-                _time -= Time.deltaTime;
+                //_shield.SetActive(true);
+                IsShieldActive = true;
 
-                if (_time <= 0)
-                {
-                    Debug.Log("Shield is up");
-                    _time = _waitTime;
-                }
-
-                
+            }
+            else
+            {
+                //_shield.SetActive(false);
+                IsShieldActive = false;
             }
 
         }
         else
         {
+            //_shield.SetActive(false);
+            IsShieldActive = false;
             this.GetComponentInParent<ManaBehaviour>().IsManaEmpty = false;
             this.GetComponentInParent<ManaBehaviour>().FillManaAmount();
         }
+
+        _shield.SetActive(IsShieldActive);
     }
 
 

@@ -10,7 +10,6 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField]
     private int _attackDamage = 1;
 
-
     public float maxSize;
     public float growFactor;
     public float waitTime;
@@ -28,6 +27,7 @@ public class BulletBehaviour : MonoBehaviour
     void Update()
     {
         this.GetComponent<Rigidbody>().AddForce(ShootPostion * _projectileSpeed);
+        //this.GetComponent<Rigidbody>().velocity = ShootPostion * _projectileSpeed;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,18 +36,33 @@ public class BulletBehaviour : MonoBehaviour
         {
             HealthBehaviour hb = other.GetComponentInParent<HealthBehaviour>();
 
-            if (hb.Health > 0)
+            if (other.GetComponent<DragonBehaviour>())
             {
-                hb.CharacterTakeDamage(_attackDamage);
-                hb.ChangeHealth(hb.Health);
+                DecreaseHealth(hb);
+            }
+            else if (other.GetComponent<WolfBehaviour>())
+            {
+                if (!other.GetComponent<WolfBehaviour>().IsShieldActive)
+                {
+                    DecreaseHealth(hb);
+                }
             }
         }
-
-        if (other.tag != "Enemy")
+        
+        if (other.tag != "Enemy" && other.tag != "TrapCheck" && other.tag != "EnemyShield")
         {
             Destroy(this.gameObject);
         }
         
+    }
+
+    private void DecreaseHealth(HealthBehaviour hb)
+    {
+        if (hb.Health > 0)
+        {
+            hb.CharacterTakeDamage(_attackDamage);
+            hb.ChangeHealth(hb.Health);
+        }
     }
 
     private IEnumerator ScaleProjectile()

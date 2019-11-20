@@ -19,8 +19,8 @@ public class TransformBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TransformAmount = 0;
-        IsTransformAvailable = false;
+        TransformAmount = TRANSFORM_MAX;
+        IsTransformAvailable = true;
     }
 
     private void Update()
