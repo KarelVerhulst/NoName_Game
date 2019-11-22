@@ -13,10 +13,12 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
     private List<bool> _isHitList = new List<bool>();
     private List<bool> _trueList = new List<bool>();
 
-    private bool test;
+    private bool _isCurrentObjectHitted = false;
 
     private float _timer = 5;
     private Transform _oldCameraPosition = null;
+
+    private bool _oneTime = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,12 +38,12 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
         //Debug.Log(_index != _listOfEnemies.Count);
         if (_index != _listOfEnemies.Count)
         {
-            test = _listOfEnemies[_index].GetComponentInChildren<CheckCurrentObjectIsTrigger>().IsHit;
+            _isCurrentObjectHitted = _listOfEnemies[_index].GetComponentInChildren<CheckCurrentObjectIsTrigger>().IsHit;
             
-            if (test)
+            if (_isCurrentObjectHitted)
             {
                 
-                _isHitList.Add(test);
+                _isHitList.Add(_isCurrentObjectHitted);
                 _index++;
                 //Debug.Log(_index);
                 if (_index != _listOfEnemies.Count)
@@ -59,7 +61,12 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
         {
             if (_timer <= 0)
             {
-                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _oldCameraPosition.position, Time.deltaTime * 50);
+                if (!_oneTime)
+                {
+                    Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _oldCameraPosition.position, Time.deltaTime * 50);
+                    _oneTime = true;
+                }
+                
             }
             else
             {
