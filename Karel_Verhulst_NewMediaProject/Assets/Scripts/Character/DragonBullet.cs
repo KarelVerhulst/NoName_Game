@@ -31,7 +31,7 @@ public class DragonBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player" && other.tag != "Enemy")
+        if (other.tag != "Player" && other.tag != "Enemy" && !other.GetComponent<BulletBehaviour>())
         {
             Destroy(this.gameObject);
         }

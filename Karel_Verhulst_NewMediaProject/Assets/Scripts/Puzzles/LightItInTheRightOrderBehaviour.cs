@@ -8,79 +8,78 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
     private List<GameObject> _listOfEnemies = new List<GameObject>();
     [SerializeField]
     private Transform _puzzleViewCamera = null;
-
-    private int _index = 0;
-    private List<bool> _isHitList = new List<bool>();
-    private List<bool> _trueList = new List<bool>();
-
-    private bool _isCurrentObjectHitted = false;
-
+    
+    private List<int> _correctOrderPosition = new List<int>();
+    
     private float _timer = 5;
     private Transform _oldCameraPosition = null;
 
     private bool _oneTime = false;
 
+    public bool IsPuzzleFinished { get; set; }
+    public List<int> ListOfPositionItHit = new List<int>();
+
     // Start is called before the first frame update
     void Start()
     {
-        //first one in the list you can hit it
-        _listOfEnemies[0].GetComponentInChildren<CheckCurrentObjectIsTrigger>().CanIHit = true;
-
         for (int i = 0; i < _listOfEnemies.Count; i++)
         {
-            _trueList.Add(true);
+            _correctOrderPosition.Add(i);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(_index != _listOfEnemies.Count);
-        if (_index != _listOfEnemies.Count)
+        if (ListOfPositionItHit.Count == _correctOrderPosition.Count)
         {
-            _isCurrentObjectHitted = _listOfEnemies[_index].GetComponentInChildren<CheckCurrentObjectIsTrigger>().IsHit;
-            
-            if (_isCurrentObjectHitted)
-            {
-                
-                _isHitList.Add(_isCurrentObjectHitted);
-                _index++;
-                //Debug.Log(_index);
-                if (_index != _listOfEnemies.Count)
-                {
-                    _oldCameraPosition = Camera.main.transform;
-                    _listOfEnemies[_index].GetComponentInChildren<CheckCurrentObjectIsTrigger>().CanIHit = true;
-                }
-
-                
-            }
+            CheckIfTheOrderIsCorrect();
         }
-
-        //if all the enemies are true you defeat them all in the right order !!
-        if (CheckArrays(_isHitList, _trueList))
-        {
-            if (_timer <= 0)
-            {
-                if (!_oneTime)
-                {
-                    Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _oldCameraPosition.position, Time.deltaTime * 50);
-                    _oneTime = true;
-                }
-                
-            }
-            else
-            {
-                _timer -= Time.deltaTime;
-                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _puzzleViewCamera.position, Time.deltaTime * 50);
-            }
-            //Debug.Log("Correct order Do Something");
-            
-        }
-        
-
     }
 
-    private bool CheckArrays(List<bool> array1, List<bool> array2)
+    private void CheckIfTheOrderIsCorrect()
+    {
+        if (CheckArrays(ListOfPositionItHit, _correctOrderPosition))
+        {
+            MoveCameraToFinishPosition();
+        }
+        else
+        {
+            ResetOrderPuzzle();
+        }
+    }
+
+    private void MoveCameraToFinishPosition()
+    {
+        IsPuzzleFinished = true;
+
+        if (_timer <= 0)
+        {
+            if (!_oneTime)
+            {
+                _oneTime = true;
+                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _oldCameraPosition.position, Time.deltaTime * 50);
+            }
+        }
+        else
+        {
+            _timer -= Time.deltaTime;
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _puzzleViewCamera.position, Time.deltaTime * 50);
+        }
+    }
+
+    private void ResetOrderPuzzle()
+    {
+        ListOfPositionItHit.Clear();
+
+        for (int i = 0; i < _listOfEnemies.Count; i++)
+        {
+            _listOfEnemies[i].GetComponentInChildren<LightObjectBehaviour>().Light.SetActive(false);
+            _listOfEnemies[i].GetComponentInChildren<CheckCurrentObjectIsTrigger>().OneTime = false;
+        }
+    }
+
+    private bool CheckArrays(List<int> array1, List<int> array2)
     {
         if (array1.Count != array2.Count) return false;
         for (int i = 0; i < array1.Count; i++)

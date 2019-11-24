@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class ManaBehaviour : MonoBehaviour
 {
-
-    [SerializeField]
-    private Image _mana = null;
     [SerializeField]
     private List<Image> _listOfManas = new List<Image>();
     [SerializeField]
@@ -40,7 +37,8 @@ public class ManaBehaviour : MonoBehaviour
         //    _manaAmount -= amount * (_manaReduceSpeed * Time.deltaTime);
         //    _mana.fillAmount = GetManaNormalized();
         //}
-
+       
+        
         if (index == _listOfManas.Count)
         {
             IsManaEmpty = true;

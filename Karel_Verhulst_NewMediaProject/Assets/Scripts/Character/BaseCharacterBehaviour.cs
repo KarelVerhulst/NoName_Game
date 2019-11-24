@@ -62,7 +62,7 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, ICharacter
         if (_currentState != null)
             _currentState.OnStateEnter();
     }
-
+     
     public float GetJumpDistanceToGround()
     {
         RaycastHit hit;

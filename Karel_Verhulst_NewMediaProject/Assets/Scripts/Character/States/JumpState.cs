@@ -8,6 +8,7 @@ public class JumpState : State
 
     private MovementController _mc;
     private AnimationController _ac;
+    private bool _jump;
 
     public JumpState(ICharacter character) : base(character)
     {
@@ -20,8 +21,7 @@ public class JumpState : State
         if (_character.CC.isGrounded)
         {
             _mc.UpdateMovement(InputController.GetLeftJoystick(),true);
-            _ac.JumpAnimation(true, _character.GetJumpDistanceToGround());
-            Debug.Log(_character.name + " | " + _character.GetJumpDistanceToGround());
+            _jump = true;
         }
         else
         {
@@ -37,9 +37,11 @@ public class JumpState : State
                 {
                     _character.SetState(new IdleState(_character));
                 }
-                _ac.JumpAnimation(false, _character.GetJumpDistanceToGround());
+                _jump = false;
             }
         }
+
+        _ac.JumpAnimation(_jump, _character.GetJumpDistanceToGround());
     }
 
 

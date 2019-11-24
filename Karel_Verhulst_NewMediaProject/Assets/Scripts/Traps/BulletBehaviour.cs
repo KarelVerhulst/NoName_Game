@@ -49,7 +49,7 @@ public class BulletBehaviour : MonoBehaviour
             }
         }
         
-        if (other.tag != "Enemy" && other.tag != "TrapCheck" && other.tag != "EnemyShield")
+        if (other.tag != "Enemy" && other.tag != "TrapCheck" && other.tag != "EnemyShield" && !other.GetComponent<DragonBullet>())
         {
             Destroy(this.gameObject);
         }

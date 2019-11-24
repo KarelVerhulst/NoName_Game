@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class CheckCurrentObjectIsTrigger : MonoBehaviour
 {
-    public bool IsHit { get; set; }
-    public bool CanIHit { get; set; }
+    [Range(0, 5)]
+    [SerializeField]
+    private int _orderPosition = 0;
+
+    public bool OneTime { get; set; }
 
     void Start()
     {
-        IsHit = false;
+        OneTime = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(CanIHit);
-        if (CanIHit)
+        if (other.GetComponentInParent<DragonBullet>())
         {
-            IsHit = true;
-        }
-        else
-        {
-            IsHit = false;
+            this.GetComponentInParent<LightObjectBehaviour>().Light.SetActive(true);
+            
+            if (!OneTime)
+            {
+                this.GetComponentInParent<LightItInTheRightOrderBehaviour>().ListOfPositionItHit.Add(_orderPosition);
+                OneTime = true;
+            }
         }
     }
 
