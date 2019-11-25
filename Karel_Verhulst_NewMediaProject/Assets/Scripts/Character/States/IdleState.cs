@@ -19,6 +19,11 @@ public class IdleState : State
 
             return;
         }
+        else
+        {
+            _ac.MoveAnimation(false);
+            _ac.DeadAnimation(false);
+        }
 
         _mc.UpdateMovement(Vector3.zero, false); //idle
 

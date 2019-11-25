@@ -5,6 +5,8 @@ using UnityEngine;
 public class LightItInTheRightOrderBehaviour : MonoBehaviour
 {
     [SerializeField]
+    private Animation _gateAnimation = null;
+    [SerializeField]
     private List<GameObject> _listOfEnemies = new List<GameObject>();
     [SerializeField]
     private Transform _puzzleViewCamera = null;
@@ -57,14 +59,18 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
         {
             if (!_oneTime)
             {
+                //Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _oldCameraPosition.position, Time.deltaTime * 50);
+                //Camera.main.transform.position = _oldCameraPosition.position;
                 _oneTime = true;
-                Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _oldCameraPosition.position, Time.deltaTime * 50);
             }
         }
         else
         {
             _timer -= Time.deltaTime;
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _puzzleViewCamera.position, Time.deltaTime * 50);
+            _gateAnimation.Play("OpenSecondGate");
+
+            //Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _puzzleViewCamera.position, Time.deltaTime * 50);
+            Camera.main.transform.position = _puzzleViewCamera.position;
         }
     }
 

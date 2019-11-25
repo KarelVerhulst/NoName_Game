@@ -28,6 +28,8 @@ public class LightObjectBehaviour : MonoBehaviour
         set { _light = value; }
     }
 
+    public bool IsLightOn { get; set; }
+
 
     private float _timer;
 
@@ -41,8 +43,8 @@ public class LightObjectBehaviour : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         _isPuzzleFixed = this.GetComponentInParent<LightItInTheRightOrderBehaviour>().IsPuzzleFinished;
-
-        if (other.tag == "Player" && !_isPuzzleFixed)
+        
+        if (other.tag == "Player" && !IsLightOn)
         {
             _shootObject.LookAt(other.transform);
             _shootObject.eulerAngles = new Vector3(0, _shootObject.transform.eulerAngles.y, 0);

@@ -15,12 +15,14 @@ public class CheckCurrentObjectIsTrigger : MonoBehaviour
         OneTime = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) 
     {
         if (other.GetComponentInParent<DragonBullet>())
         {
             this.GetComponentInParent<LightObjectBehaviour>().Light.SetActive(true);
-            
+            this.GetComponentInParent<LightObjectBehaviour>().IsLightOn = true;
+
+
             if (!OneTime)
             {
                 this.GetComponentInParent<LightItInTheRightOrderBehaviour>().ListOfPositionItHit.Add(_orderPosition);

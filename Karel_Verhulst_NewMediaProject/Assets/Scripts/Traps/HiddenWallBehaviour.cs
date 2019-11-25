@@ -49,10 +49,7 @@ public class HiddenWallBehaviour : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<WolfBehaviour>())
-        {
-            _wallCollider.isTrigger = false;
-            _wallMaterial.color = _currentColor;
-        }
+        _wallCollider.isTrigger = false;
+        _wallMaterial.color = _currentColor;
     }
 }
