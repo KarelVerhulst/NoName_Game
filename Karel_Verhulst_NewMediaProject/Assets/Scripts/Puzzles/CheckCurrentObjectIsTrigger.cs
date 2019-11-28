@@ -9,6 +9,7 @@ public class CheckCurrentObjectIsTrigger : MonoBehaviour
     private int _orderPosition = 0;
 
     public bool OneTime { get; set; }
+    public bool IsDragonBullet { get; set; }
 
     void Start()
     {
@@ -19,6 +20,8 @@ public class CheckCurrentObjectIsTrigger : MonoBehaviour
     {
         if (other.GetComponentInParent<DragonBullet>())
         {
+            IsDragonBullet = true;
+
             this.GetComponentInParent<LightObjectBehaviour>().Light.SetActive(true);
             this.GetComponentInParent<LightObjectBehaviour>().IsLightOn = true;
 
