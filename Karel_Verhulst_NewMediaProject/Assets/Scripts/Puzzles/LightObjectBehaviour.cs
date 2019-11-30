@@ -8,7 +8,7 @@ public class LightObjectBehaviour : MonoBehaviour
     private Transform _shootObject = null;
     [SerializeField]
     private Transform projectilePosition = null;
-    [SerializeField] 
+    [SerializeField]
     private GameObject projectile = null;
     [SerializeField]
     private float _maxTimer = 1;
@@ -27,7 +27,7 @@ public class LightObjectBehaviour : MonoBehaviour
      * OnlyDragon -> torchlight shoots to the player BUT only the dragon can turn on the light 
      * OnlyWolf -> torchlight shoots to the player BUT only the wolf can turn on the light
      */
-    private enum TypeOfTorchlight { Normal, Advanced, OnlyDragon, OnlyWolf}
+    public enum TypeOfTorchlight { Normal, Advanced, OnlyDragon, OnlyWolf }
 
     [SerializeField]
     private TypeOfTorchlight _chooseTypeOfTorchlight = TypeOfTorchlight.Normal;
@@ -39,21 +39,27 @@ public class LightObjectBehaviour : MonoBehaviour
     }
 
     public bool IsLightOn { get; set; }
-
-
+    public TypeOfTorchlight CurrentTorchlightType { get; set; }
+    public int PhaseIndex {get;set;}
+    
     private float _timer;
     private bool _isPuzzleFixed = false;
     private bool _isDragonBullet = false;
+    private bool _isWolfBullet = false;
 
     private void Start()
     {
         _timer = _maxTimer;
+
+        CurrentTorchlightType = _chooseTypeOfTorchlight;
+        PhaseIndex = 0; 
     }
 
     private void OnTriggerStay(Collider other)
     {
         _isPuzzleFixed = this.GetComponentInParent<LightItInTheRightOrderBehaviour>().IsPuzzleFinished;
         _isDragonBullet = this.GetComponentInChildren<CheckCurrentObjectIsTrigger>().IsDragonBullet;
+        _isWolfBullet = this.GetComponentInChildren<CheckCurrentObjectIsTrigger>().IsWolfBullet;
 
         if (other.TryGetComponent<BaseCharacterBehaviour>(out BaseCharacterBehaviour character))
         {
@@ -75,6 +81,7 @@ public class LightObjectBehaviour : MonoBehaviour
             if (_chooseTypeOfTorchlight == TypeOfTorchlight.Advanced)
             {
                 this.GetComponentInChildren<CheckCurrentObjectIsTrigger>().IsDragonBullet = false;
+                this.GetComponentInChildren<CheckCurrentObjectIsTrigger>().IsWolfBullet = false;
             }
         }
         
@@ -115,6 +122,10 @@ public class LightObjectBehaviour : MonoBehaviour
                 if (!IsLightOn)
                 {
                     ShootObject();
+                    if (_isDragonBullet || _isWolfBullet)
+                    {
+                        SetLightOn();
+                    }
                 }
                 
                 break;
@@ -126,6 +137,10 @@ public class LightObjectBehaviour : MonoBehaviour
                 {
                     ShootObject();
                     UseShieldWhenPlaying(character.TryGetComponent<WolfBehaviour>(out WolfBehaviour wolf));
+                    if (_isDragonBullet)
+                    {
+                        SetLightOn();
+                    }
                 }
                 
                 break;
@@ -134,6 +149,11 @@ public class LightObjectBehaviour : MonoBehaviour
                 {
                     ShootObject();
                     UseShieldWhenPlaying(character.TryGetComponent<DragonBehaviour>(out DragonBehaviour dragon));
+
+                    if (_isWolfBullet)
+                    {
+                        SetLightOn();
+                    }
                 }
                 
                 break;
@@ -156,11 +176,43 @@ public class LightObjectBehaviour : MonoBehaviour
 
     private void AdvancedTorchlightPuzzle()
     {
-       
         //do nothing unless the dragon shoot at it then shoot back if the wolf reflect back then light is on.
+        switch (PhaseIndex)
+        {
+            case 0:
+                CheckIfDragonAttack();
+                break;
+            case 1:
+                ShootObject(true);
+                CheckIfWolfAttack();
+                break;
+            case 2:
+                SetLightOn();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void CheckIfDragonAttack()
+    {
         if (_isDragonBullet)
         {
-            ShootObject(true);
+            PhaseIndex++;
         }
+    }
+
+    private void CheckIfWolfAttack()
+    {
+        if (_isWolfBullet)
+        {
+            PhaseIndex++;
+        }
+    }
+
+    private void SetLightOn()
+    {
+        this.GetComponent<LightObjectBehaviour>().Light.SetActive(true);
+        this.GetComponent<LightObjectBehaviour>().IsLightOn = true;
     }
 }

@@ -81,7 +81,11 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
         for (int i = 0; i < _listOfEnemies.Count; i++)
         {
             _listOfEnemies[i].GetComponentInChildren<LightObjectBehaviour>().Light.SetActive(false);
+            _listOfEnemies[i].GetComponentInChildren<LightObjectBehaviour>().IsLightOn = false;
+            _listOfEnemies[i].GetComponentInChildren<LightObjectBehaviour>().PhaseIndex = 0;
             _listOfEnemies[i].GetComponentInChildren<CheckCurrentObjectIsTrigger>().OneTime = false;
+            _listOfEnemies[i].GetComponentInChildren<CheckCurrentObjectIsTrigger>().IsDragonBullet = false;
+            _listOfEnemies[i].GetComponentInChildren<CheckCurrentObjectIsTrigger>().IsWolfBullet = false;
         }
     }
 

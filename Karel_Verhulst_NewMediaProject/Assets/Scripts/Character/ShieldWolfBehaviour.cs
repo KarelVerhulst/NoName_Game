@@ -14,7 +14,7 @@ public class ShieldWolfBehaviour : MonoBehaviour
         if (other.tag == "EnemyBullet")
         {
             GameObject bullet = Instantiate(_projectile, _shootPosition.position, Quaternion.identity) as GameObject;
-            bullet.GetComponent<DragonBullet>().ShootPostion = _shootPosition.forward;
+            bullet.GetComponent<WolfBullet>().ShootPostion = _shootPosition.forward;
 
            
             /*

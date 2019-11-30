@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 1120180125319465633}
   - component: {fileID: 1224575652930113449}
   - component: {fileID: 5542561838441207220}
-  - component: {fileID: 9163297280119419291}
+  - component: {fileID: 8537699738764606694}
   m_Layer: 0
-  m_Name: EnemyBullet
-  m_TagString: EnemyBullet
+  m_Name: Wolf Bolt
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &9163297280119419291
+--- !u!114 &8537699738764606694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,11 +119,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6651425339216464319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f698adeda560a44da544e184a19f5b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 5cf5ff23763aadb4dbf670a5cb2de6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectileSpeed: 20
+  _projectileSpeed: 10
   _attackDamage: 1
   _maxSize: 1
   _growFactor: 0.5
-  _waitTime: 1.5
+  _waitTime: 0.2

@@ -12,7 +12,7 @@ public class TransformState : State
         _newCharacter.transform.position = _character.transform.position;
         _newCharacter.transform.rotation = _character.transform.rotation;
 
-        _character.GetComponentInParent<TransformBehaviour>().TransformAmount = 0;
+        _character.GetComponentInParent<TransformBehaviour>().StartTransformCounter = true;
     }
 
     public override void Tick()

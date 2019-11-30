@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragonBullet : BaseBullet
+public class WolfBullet : BaseBullet
 {
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag != "Player" && other.tag != "Enemy" && !other.GetComponent<BulletBehaviour>())

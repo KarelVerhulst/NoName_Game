@@ -8,43 +8,77 @@ public class TransformBehaviour : MonoBehaviour
     [SerializeField]
     private Image _transformImage = null;
     [SerializeField]
-    private float _transformRegenAmount = 30f;
+    private float _transformRegenAmount = 10f;
+    [SerializeField]
+    private float _transformSpendAmount = 20f;
 
     private const int TRANSFORM_MAX = 100;
-    
+
+    private bool _canISpend = true;
+    private float _transformAmount = 0;
 
     public bool IsTransformAvailable  { get; set; }
-    public float TransformAmount { get; set; }
+    public bool StartTransformCounter { get; set; }
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        TransformAmount = TRANSFORM_MAX;
+        _transformAmount = TRANSFORM_MAX;
         IsTransformAvailable = true;
+        StartTransformCounter = false;
     }
 
     private void Update()
     {
-        FillManaAmount();
+        if (_canISpend & StartTransformCounter)
+        {
+            SpendTransformAmount();
+        }
+        else
+        {
+            FillTransformAmount();
+        }
+
+        _transformImage.fillAmount = GetTransformNormalized();
     }
 
-    public void FillManaAmount()
+    private void FillTransformAmount()
     {
-        if (GetManaNormalized() < 1)
+        if (GetTransformNormalized() < 1)
         {
+            _canISpend = false;
             IsTransformAvailable = false;
-            TransformAmount += _transformRegenAmount * Time.deltaTime;
-            TransformAmount = Mathf.Clamp(TransformAmount, 0f, TRANSFORM_MAX);
-
-            _transformImage.fillAmount = GetManaNormalized();
+            _transformAmount += _transformRegenAmount * Time.deltaTime;
+            _transformAmount = Mathf.Clamp(_transformAmount, 0f, TRANSFORM_MAX);
+            
         }else 
         {
+            StartTransformCounter = false;
             IsTransformAvailable = true;
+            _canISpend = true;
+        }
+    }
+    
+    private void SpendTransformAmount()
+    {
+        if (GetTransformNormalized() > 0)
+        {
+            _canISpend = true;
+            IsTransformAvailable = true;
+
+            _transformAmount -= _transformSpendAmount * Time.deltaTime;
+            _transformAmount = Mathf.Clamp(0f, _transformAmount, TRANSFORM_MAX);
+        }
+        else
+        {
+            IsTransformAvailable = false;
+            _canISpend = false;
         }
     }
 
-    private float GetManaNormalized()
+    private float GetTransformNormalized()
     {
-        return TransformAmount / TRANSFORM_MAX;
+        return _transformAmount / TRANSFORM_MAX;
     }
 }

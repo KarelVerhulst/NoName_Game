@@ -10,6 +10,7 @@ public class CheckCurrentObjectIsTrigger : MonoBehaviour
 
     public bool OneTime { get; set; }
     public bool IsDragonBullet { get; set; }
+    public bool IsWolfBullet { get; set; }
 
     void Start()
     {
@@ -18,21 +19,58 @@ public class CheckCurrentObjectIsTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.GetComponentInParent<DragonBullet>())
+        switch (this.GetComponentInParent<LightObjectBehaviour>().CurrentTorchlightType)
         {
-            IsDragonBullet = true;
-
-            this.GetComponentInParent<LightObjectBehaviour>().Light.SetActive(true);
-            this.GetComponentInParent<LightObjectBehaviour>().IsLightOn = true;
-
-
-            if (!OneTime)
-            {
-                this.GetComponentInParent<LightItInTheRightOrderBehaviour>().ListOfPositionItHit.Add(_orderPosition);
-                OneTime = true;
-            }
+            case LightObjectBehaviour.TypeOfTorchlight.Advanced:
+                AddPositionToList(other, true);
+                break;
+            case LightObjectBehaviour.TypeOfTorchlight.OnlyDragon:
+            case LightObjectBehaviour.TypeOfTorchlight.OnlyWolf:
+            case LightObjectBehaviour.TypeOfTorchlight.Normal:
+                AddPositionToList(other);
+                break;
+            default:
+                break;
         }
     }
 
-    
+    private void AddPositionToList(Collider other, bool isAdvanced = false)
+    {
+        
+        if (isAdvanced)
+        {
+            if (other.GetComponentInParent<DragonBullet>())
+            {
+                IsDragonBullet = true;
+            }
+                
+            if (other.GetComponentInParent<WolfBullet>())
+            {
+                
+                IsWolfBullet = true;
+
+                if (!OneTime)
+                {
+
+                    this.GetComponentInParent<LightItInTheRightOrderBehaviour>().ListOfPositionItHit.Add(_orderPosition);
+                    OneTime = true;
+                }
+            }
+        }
+        else
+        {
+            if (other.GetComponentInParent<DragonBullet>() || other.GetComponentInParent<WolfBullet>())
+            {
+                IsDragonBullet = other.GetComponentInParent<DragonBullet>();
+                IsWolfBullet = other.GetComponentInParent<WolfBullet>();
+                
+                if (!OneTime)
+                {
+
+                    this.GetComponentInParent<LightItInTheRightOrderBehaviour>().ListOfPositionItHit.Add(_orderPosition);
+                    OneTime = true;
+                }
+            }
+        }
+    }
 }
