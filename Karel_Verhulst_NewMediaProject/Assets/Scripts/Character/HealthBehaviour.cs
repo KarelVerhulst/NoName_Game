@@ -9,8 +9,10 @@ public class HealthBehaviour : MonoBehaviour
     private GameObject[] _arrayOfHealth = null;
 
     [SerializeField]
-    private Transform _respawnPostion = null;
+    private Transform _respawnPostion = null; //change this to the respawnbehaviour script
 
+    
+    [SerializeField]
     private float _waitTimer = 3f;
 
     public int Health { get; set; }
@@ -18,33 +20,41 @@ public class HealthBehaviour : MonoBehaviour
     void Start()
     {
         Health = _arrayOfHealth.Length;
+
+        StartCoroutine(Test());
     }
 
-    private void Update()
+    IEnumerator Test()
     {
-        if (Health <= 0)
+        while (true)
         {
-            _waitTimer -= Time.deltaTime;
-
-            foreach (GameObject item in _arrayOfHealth)
-            {
-                item.GetComponent<Image>().color = Color.gray;
-            }
-
-            if (_waitTimer <= 0)
+            if (Health <= 0)
             {
                 foreach (GameObject item in _arrayOfHealth)
                 {
-                    item.GetComponent<Image>().color = Color.green;
+                    item.GetComponent<Image>().color = Color.gray;
                 }
-                Health = _arrayOfHealth.Length;
 
-                this.GetComponentInChildren<BaseCharacterBehaviour>().transform.position = _respawnPostion.position;
+                yield return new WaitForSeconds(_waitTimer);
 
-                _waitTimer = 3f;
+                ResetHealthAndPosition();
+               
             }
-            
+
+            yield return null;
         }
+    }
+
+    private void ResetHealthAndPosition()
+    {
+        foreach (GameObject item in _arrayOfHealth)
+        {
+            item.GetComponent<Image>().color = Color.green;
+        }
+
+        Health = _arrayOfHealth.Length;
+
+        this.GetComponentInChildren<BaseCharacterBehaviour>().transform.position = _respawnPostion.position;
     }
 
     public void ChangeHealth(int healthIndex)
