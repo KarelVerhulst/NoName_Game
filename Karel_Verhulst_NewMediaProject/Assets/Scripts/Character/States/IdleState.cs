@@ -25,7 +25,10 @@ public class IdleState : State
             _ac.DeadAnimation(false);
         }
 
-        _mc.UpdateMovement(Vector3.zero, false); //idle
+        if (!_character.CC.isGrounded)
+        {
+            _mc.UpdateMovement(Vector3.zero, false); //idle
+        }
 
         if (InputController.GetLeftJoystick() != Vector3.zero)
         {

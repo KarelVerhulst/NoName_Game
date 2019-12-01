@@ -22,6 +22,6 @@ Material:
     m_TexEnvs: []
     m_Floats:
     - Vector1_E3A53CD0: 1.18
-    - _BlendEffect: 1
+    - _BlendEffect: 1.0081018
     m_Colors:
     - Color_ECC71D5: {r: 0, g: 0.3962264, b: 0.014938939, a: 0}

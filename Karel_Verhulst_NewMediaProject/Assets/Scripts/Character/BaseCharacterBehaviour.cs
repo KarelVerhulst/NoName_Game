@@ -6,7 +6,7 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, ICharacter
 {
     // fields
     [SerializeField]
-    private float _moveSpeed = 4.0f;
+    private Vector2 _moveSpeed = new Vector2(5,8); //min speed and max speed
     [SerializeField]
     private float _rotateSpeed = 8.0f;
     [SerializeField]
@@ -17,6 +17,11 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, ICharacter
     private LayerMask _mapLayerMask = 0;
     [SerializeField]
     protected float _spendingAmountOfMana = 1;
+
+    [SerializeField]
+    private float _accelerator = 60f;
+
+    public float Accelerator { get { return _accelerator; } }
 
     private State _currentState;
     
@@ -30,7 +35,8 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, ICharacter
     private Transform _camera = null;
     public Transform CameraTransform { get { return _camera; } }
 
-    public float MoveSpeed { get { return _moveSpeed; } }
+    public Vector2 MoveSpeed { get { return _moveSpeed; }  }
+    public float CurrentSpeed { get; set; }
     public float RotateSpeed { get { return _rotateSpeed; } }
     public float JumpSpeed { get { return _jumpSpeed; }  }
     public float Gravity { get { return _gravity; } }

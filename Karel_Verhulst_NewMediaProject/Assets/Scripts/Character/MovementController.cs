@@ -7,19 +7,25 @@ public class MovementController
     private Vector3 _moveDirection = Vector3.zero;
     private float _vertical = 0.0f;
     private float _horizontal = 0.0f;
-    private float _inputAmount;
+    private float _inputAmount = 0.0f;
 
     private BaseCharacterBehaviour _character;
+    
+    private float _runTimer = 3;
+    private float _acceleratorTimer = 0;
 
     public MovementController(BaseCharacterBehaviour character)
     {
         _character = character;
+        _character.CurrentSpeed = _character.MoveSpeed.x; 
     }
 
     public void UpdateMovement(Vector3 movement, bool jump)
     {
         if (_character.CC.isGrounded)
         {
+            IncreaseSpeedAfterTime();
+            
             ApplyMovement(movement);
             RotateCharacterToDirection();
             Jump(jump);
@@ -35,6 +41,21 @@ public class MovementController
         if (jump)
         {
             _moveDirection.y = _character.JumpSpeed;
+        }
+    }
+
+    private void IncreaseSpeedAfterTime()
+    {
+        _runTimer -= Time.deltaTime;
+
+        if (_runTimer <= 0)
+        {
+            _character.CurrentSpeed = Mathf.SmoothStep(_character.MoveSpeed.x, _character.MoveSpeed.y, _acceleratorTimer / _character.Accelerator);
+            _acceleratorTimer += Time.deltaTime;
+        }
+        else
+        {
+            _character.CurrentSpeed = _character.MoveSpeed.x;
         }
     }
 
@@ -79,6 +100,6 @@ public class MovementController
 
     private void DoMovement()
     {
-        _character.CC.Move(_moveDirection * Time.deltaTime * _character.MoveSpeed);
+        _character.CC.Move(_moveDirection * Time.deltaTime * _character.CurrentSpeed);
     }
 }
