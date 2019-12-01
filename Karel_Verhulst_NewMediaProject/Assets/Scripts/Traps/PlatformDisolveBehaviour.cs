@@ -18,16 +18,19 @@ public class PlatformDisolveBehaviour : MonoBehaviour
     private bool _repeat = true;
 
     private BoxCollider _boxCollider = null;
-    private bool _isActionDissolve = true;
+    private bool _isActionDissolve = false;
     private float _rate = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        _disolveMaterial.SetFloat("_Amount", 0);
+        //_disolveMaterial.SetFloat("_Amount", 0);
+        _disolveMaterial.SetFloat("_BlendEffect", 1);
         _rate = (1.0f / _time) * _speed;
         _boxCollider = this.GetComponent<BoxCollider>();
         StartCoroutine(Action());
+
+
     }
 
     private IEnumerator Action()
@@ -64,7 +67,7 @@ public class PlatformDisolveBehaviour : MonoBehaviour
 
             if (time >= 0.5)
             {
-                _boxCollider.isTrigger = true;
+                _boxCollider.isTrigger = false;
             }
 
             if (time >= 1)
@@ -88,7 +91,7 @@ public class PlatformDisolveBehaviour : MonoBehaviour
 
             if (time <= 0.5)
             {
-                _boxCollider.isTrigger = false;
+                _boxCollider.isTrigger = true;
             }
 
             if (time <= 0)
@@ -102,6 +105,7 @@ public class PlatformDisolveBehaviour : MonoBehaviour
 
     private void ChangeMaterialt(float time)
     {
-        _disolveMaterial.SetFloat("_Amount", time);
+        //_disolveMaterial.SetFloat("_Amount", time);
+        _disolveMaterial.SetFloat("_BlendEffect", time);
     }
 }
