@@ -90,7 +90,8 @@ public class LightObjectBehaviour : MonoBehaviour
     private void LookAtPlayer(Transform character)
     {
         _shootObject.LookAt(character);
-        _shootObject.eulerAngles = new Vector3(0, _shootObject.transform.eulerAngles.y, 0);
+        //_shootObject.eulerAngles = new Vector3(0, _shootObject.transform.eulerAngles.y, 0);
+        _shootObject.eulerAngles = new Vector3(-90, 0, _shootObject.transform.eulerAngles.y);
     }
 
     private void ShootObject(bool isAdvanced = false)
