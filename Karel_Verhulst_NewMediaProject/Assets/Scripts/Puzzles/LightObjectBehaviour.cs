@@ -52,7 +52,8 @@ public class LightObjectBehaviour : MonoBehaviour
         _timer = _maxTimer;
 
         CurrentTorchlightType = _chooseTypeOfTorchlight;
-        PhaseIndex = 0; 
+        PhaseIndex = 0;
+        _shield.SetActive(false);
     }
 
     private void OnTriggerStay(Collider other)
@@ -213,7 +214,7 @@ public class LightObjectBehaviour : MonoBehaviour
 
     private void SetLightOn()
     {
-        this.GetComponent<LightObjectBehaviour>().Light.SetActive(true);
+        //this.GetComponent<LightObjectBehaviour>().Light.SetActive(true);
         this.GetComponent<LightObjectBehaviour>().IsLightOn = true;
     }
 }

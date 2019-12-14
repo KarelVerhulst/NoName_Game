@@ -67,7 +67,7 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
         else
         {
             _timer -= Time.deltaTime;
-            _gateAnimation.Play("OpenSecondGate");
+            _gateAnimation.Play("SpikesDoorAnimation");
 
             //Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _puzzleViewCamera.position, Time.deltaTime * 50);
             Camera.main.transform.position = _puzzleViewCamera.position;

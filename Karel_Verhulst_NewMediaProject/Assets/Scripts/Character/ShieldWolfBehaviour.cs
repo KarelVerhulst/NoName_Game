@@ -8,7 +8,7 @@ public class ShieldWolfBehaviour : MonoBehaviour
     private Transform _shootPosition = null;
     [SerializeField]
     private GameObject _projectile = null;
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "EnemyBullet")

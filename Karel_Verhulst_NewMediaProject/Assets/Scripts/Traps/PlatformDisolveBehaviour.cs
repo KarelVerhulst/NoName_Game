@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlatformDisolveBehaviour : MonoBehaviour
 {
     [SerializeField]
-    private Material _disolveMaterial = null;
+    private List<Material> _disolveMaterials = new List<Material>();
     [SerializeField]
     private float _waitTimerForDissolve = 1;
     [SerializeField]
@@ -24,13 +24,11 @@ public class PlatformDisolveBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //_disolveMaterial.SetFloat("_Amount", 0);
-        _disolveMaterial.SetFloat("_BlendEffect", 1);
+        SetFloatEffectMaterial(1);
+
         _rate = (1.0f / _time) * _speed;
         _boxCollider = this.GetComponent<BoxCollider>();
         StartCoroutine(Action());
-
-
     }
 
     private IEnumerator Action()
@@ -63,7 +61,7 @@ public class PlatformDisolveBehaviour : MonoBehaviour
         {
             time += Time.deltaTime * _rate;
 
-            ChangeMaterialt(time);
+            SetFloatEffectMaterial(time);
 
             if (time >= 0.5)
             {
@@ -87,7 +85,7 @@ public class PlatformDisolveBehaviour : MonoBehaviour
         {
             time -= Time.deltaTime * _rate;
 
-            ChangeMaterialt(time);
+            SetFloatEffectMaterial(time);
 
             if (time <= 0.5)
             {
@@ -103,9 +101,11 @@ public class PlatformDisolveBehaviour : MonoBehaviour
         }
     }
 
-    private void ChangeMaterialt(float time)
+    private void SetFloatEffectMaterial(float time)
     {
-        //_disolveMaterial.SetFloat("_Amount", time);
-        _disolveMaterial.SetFloat("_BlendEffect", time);
+        foreach (Material item in _disolveMaterials)
+        {
+            item.SetFloat("_BlendEffect", time);
+        }
     }
 }

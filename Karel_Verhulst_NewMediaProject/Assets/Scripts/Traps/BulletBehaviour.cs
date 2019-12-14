@@ -23,7 +23,7 @@ public class BulletBehaviour : BaseBullet
             }
         }
         
-        if (other.tag != "Enemy" && other.tag != "TrapCheck" && other.tag != "EnemyShield" && !other.GetComponent<DragonBullet>())
+        if (other.tag != "Enemy" && other.tag != "TrapCheck" && other.tag != "EnemyShield" && !other.GetComponent<DragonBullet>() && !other.GetComponent<WolfBullet>())
         {
             Destroy(this.gameObject);
         }
