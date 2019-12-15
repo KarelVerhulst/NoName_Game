@@ -46,7 +46,7 @@ public class DragonBehaviour : BaseCharacterBehaviour
                 if (_time <= 0)
                 {
 
-                    GameObject bullet = Instantiate(_projectile, _shootPosition.position, Quaternion.identity) as GameObject;
+                    GameObject bullet = Instantiate(_projectile, _shootPosition.position, this.transform.rotation) as GameObject;
                     bullet.GetComponent<DragonBullet>().ShootPostion = _shootPosition.forward;
 
                     SetState(new MagicAttackState(this));
