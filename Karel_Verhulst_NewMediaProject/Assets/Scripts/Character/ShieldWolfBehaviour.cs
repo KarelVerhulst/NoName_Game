@@ -8,12 +8,21 @@ public class ShieldWolfBehaviour : MonoBehaviour
     private Transform _shootPosition = null;
     [SerializeField]
     private GameObject _projectile = null;
-    
+
+    private void Update()
+    {
+        if (InputController.IsButtonBPressed())
+        {
+            GameObject bullet = Instantiate(_projectile, _shootPosition.position, this.transform.rotation) as GameObject;
+            bullet.GetComponent<WolfBullet>().ShootPostion = _shootPosition.forward;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "EnemyBullet")
         {
-            GameObject bullet = Instantiate(_projectile, _shootPosition.position, Quaternion.identity) as GameObject;
+            GameObject bullet = Instantiate(_projectile, _shootPosition.position, this.transform.rotation) as GameObject;
             bullet.GetComponent<WolfBullet>().ShootPostion = _shootPosition.forward;
 
            
