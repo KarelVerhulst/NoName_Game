@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class RespawnBehaviour : MonoBehaviour
 {
+    [SerializeField]
+    private Transform _respawnPostion = null;
+
+    [SerializeField]
+    private bool _useTrigger = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<BaseCharacterBehaviour>())
+        if (_useTrigger)
         {
-            other.GetComponentInParent<HealthBehaviour>().Health = 0;
+            if (other.TryGetComponent(out BaseCharacterBehaviour character))
+            {
+                other.GetComponentInParent<HealthBehaviour>().Health = 0;
+                other.GetComponentInParent<HealthBehaviour>().RespawnPoint = _respawnPostion;
+            }
         }
+        else
+        {
+            if (other.TryGetComponent(out BaseCharacterBehaviour character))
+            {
+                other.GetComponentInParent<HealthBehaviour>().RespawnPoint = _respawnPostion;
+            }
+        }
+        
     }
 }

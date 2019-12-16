@@ -7,15 +7,13 @@ public class HealthBehaviour : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] _arrayOfHealth = null;
-
-    [SerializeField]
-    private Transform _respawnPostion = null; //change this to the respawnbehaviour script
-
     
     [SerializeField]
     private float _waitTimer = 3f;
 
     public int Health { get; set; }
+    public Transform RespawnPoint { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +52,8 @@ public class HealthBehaviour : MonoBehaviour
 
         Health = _arrayOfHealth.Length;
 
-        this.GetComponentInChildren<BaseCharacterBehaviour>().transform.position = _respawnPostion.position;
+        this.GetComponentInChildren<BaseCharacterBehaviour>().transform.position = RespawnPoint.position;
+        
     }
 
     public void ChangeHealth(int healthIndex)

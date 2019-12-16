@@ -103,7 +103,7 @@ public class LightObjectBehaviour : MonoBehaviour
 
         if (_timer <= 0)
         {
-            GameObject bullet = Instantiate(projectile, projectilePosition.position, Quaternion.identity) as GameObject;
+            GameObject bullet = Instantiate(projectile, projectilePosition.position, _shootObject.transform.rotation) as GameObject;
             bullet.GetComponent<BulletBehaviour>().ShootPostion = projectilePosition.forward;
 
             if (isAdvanced)

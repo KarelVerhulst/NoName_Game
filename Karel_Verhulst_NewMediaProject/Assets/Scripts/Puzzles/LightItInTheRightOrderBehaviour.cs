@@ -7,6 +7,8 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
     [SerializeField]
     private Animation _gateAnimation = null;
     [SerializeField]
+    private Animation _puzzleAnimation = null;
+    [SerializeField]
     private List<GameObject> _listOfEnemies = new List<GameObject>();
     [SerializeField]
     private Transform _puzzleViewCamera = null;
@@ -68,6 +70,7 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
         {
             _timer -= Time.deltaTime;
             _gateAnimation.Play("SpikesDoorAnimation");
+            _puzzleAnimation.Play("PuzzleAnimation"); 
 
             //Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _puzzleViewCamera.position, Time.deltaTime * 50);
             Camera.main.transform.position = _puzzleViewCamera.position;

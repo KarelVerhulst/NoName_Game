@@ -9,7 +9,9 @@ ScriptsOnlyBuild:
     - LightItInTheRightOrderBehaviour
     - LightObjectBehaviour
     - ManaBehaviour
+    - MouthGateBehaviour
     - PlatformDisolveBehaviour
+    - PuzzleDragonWolfBehaviour
     - RespawnBehaviour
     - ShieldWolfBehaviour
     - TopDownCamera
@@ -26,10 +28,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -83,54 +83,56 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9820}
+      Script: {instanceID: 9824}
     - Class: 114
-      Script: {instanceID: 10128}
+      Script: {instanceID: 10132}
     - Class: 114
-      Script: {instanceID: 10210}
+      Script: {instanceID: 10198}
     - Class: 114
-      Script: {instanceID: 10370}
+      Script: {instanceID: 10216}
     - Class: 114
-      Script: {instanceID: 10438}
+      Script: {instanceID: 10376}
     - Class: 114
-      Script: {instanceID: 10504}
+      Script: {instanceID: 10388}
     - Class: 114
-      Script: {instanceID: 10544}
+      Script: {instanceID: 10446}
     - Class: 114
-      Script: {instanceID: 10892}
+      Script: {instanceID: 10512}
     - Class: 114
-      Script: {instanceID: 10980}
+      Script: {instanceID: 10552}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 10900}
     - Class: 114
-      Script: {instanceID: 11704}
+      Script: {instanceID: 10988}
     - Class: 114
-      Script: {instanceID: 11760}
+      Script: {instanceID: 11470}
     - Class: 114
-      Script: {instanceID: 11938}
+      Script: {instanceID: 11712}
     - Class: 114
-      Script: {instanceID: 12078}
+      Script: {instanceID: 11768}
     - Class: 114
-      Script: {instanceID: 12172}
+      Script: {instanceID: 11946}
     - Class: 114
-      Script: {instanceID: 12342}
+      Script: {instanceID: 12086}
     - Class: 114
-      Script: {instanceID: 12398}
+      Script: {instanceID: 12180}
     - Class: 114
-      Script: {instanceID: 12444}
+      Script: {instanceID: 12350}
     - Class: 114
-      Script: {instanceID: 12872}
+      Script: {instanceID: 12406}
     - Class: 114
-      Script: {instanceID: 12882}
+      Script: {instanceID: 12452}
     - Class: 114
-      Script: {instanceID: 12896}
+      Script: {instanceID: 12880}
     - Class: 114
-      Script: {instanceID: 12982}
+      Script: {instanceID: 12890}
+    - Class: 114
+      Script: {instanceID: 12904}
+    - Class: 114
+      Script: {instanceID: 12990}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 134
-      Script: {instanceID: 0}
-    - Class: 135
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
@@ -139,6 +141,10 @@ ScriptsOnlyBuild:
     - Class: 143
       Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -277,6 +283,12 @@ ScriptsOnlyBuild:
     className: TouchInputModule
   - hash:
       serializedVersion: 2
+      Hash: 3cf156985df62fac63708d6bed3583bf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PuzzleDragonWolfBehaviour
+  - hash:
+      serializedVersion: 2
       Hash: 89498a9a4a6296605faa18a2c5f758a4
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -329,6 +341,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 3843a657c038aeec3b1f887192e2b2aa
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MouthGateBehaviour
   - hash:
       serializedVersion: 2
       Hash: 38bcb4d3f9a1812fd650f92e87a4cf64
@@ -595,7 +613,7 @@ ScriptsOnlyBuild:
     className: LWRPAdditionalLightData
   - hash:
       serializedVersion: 2
-      Hash: 473fc28b0d1e03cf402777dd129bac51
+      Hash: e4ed1da07783dc2184a70e9aafef2f26
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LightItInTheRightOrderBehaviour
@@ -643,7 +661,7 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: 788c37e18bd60b87c0c8b51e1d4dcec2
+      Hash: 6f6ab5cd26b2879625ab1598e520b773
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TreeTrunkBehaviour2
@@ -685,7 +703,7 @@ ScriptsOnlyBuild:
     className: PixelPerfectCamera
   - hash:
       serializedVersion: 2
-      Hash: 5a5b9e16ee4f806720a0d38840fd5538
+      Hash: 6a9261d16c144d583a7cebe04df9442e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HealthBehaviour
@@ -745,7 +763,7 @@ ScriptsOnlyBuild:
     className: LightObjectBehaviour
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 812801dbedf5c11e8e0304b788006158
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RespawnBehaviour

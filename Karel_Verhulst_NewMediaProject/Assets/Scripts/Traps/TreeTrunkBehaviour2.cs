@@ -17,6 +17,9 @@ public class TreeTrunkBehaviour2 : MonoBehaviour
     [SerializeField]
     private bool _isStartAtLeft = false;
 
+    [SerializeField]
+    private Transform _respawnPostion = null;
+
     private int _index;
 
     // Start is called before the first frame update
@@ -30,6 +33,7 @@ public class TreeTrunkBehaviour2 : MonoBehaviour
         {
             _index = 1;
         }
+
         StartCoroutine(MoveTreeBetweenWaypoints());
     }
     
@@ -59,9 +63,10 @@ public class TreeTrunkBehaviour2 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out HealthBehaviour characterHealth))
+        if (other.TryGetComponent(out BaseCharacterBehaviour character))
         {
-            characterHealth.CharacterTakeDamage(1);
+            character.GetComponentInParent<HealthBehaviour>().CharacterTakeDamage(3);
+            character.GetComponentInParent<HealthBehaviour>().RespawnPoint = _respawnPostion;
         }
     }
 }

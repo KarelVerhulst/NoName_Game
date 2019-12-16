@@ -23,13 +23,10 @@ public class IdleState : State
         {
             _ac.MoveAnimation(false);
             _ac.DeadAnimation(false);
-        }
 
-        if (!_character.CC.isGrounded)
-        {
-            _mc.UpdateMovement(Vector3.zero, false); //idle
+            _mc.UpdateMovement(Vector3.zero, false);
         }
-
+        
         if (InputController.GetLeftJoystick() != Vector3.zero)
         {
             _character.SetState(new WalkState(_character));
