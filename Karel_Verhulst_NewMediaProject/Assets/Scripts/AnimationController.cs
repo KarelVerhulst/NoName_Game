@@ -31,4 +31,9 @@ public class AnimationController
     {
         _animator.SetBool(_isDeadParam, isDead);
     }
+
+    public bool CheckIfAnimationIsPlaying(int layerIndex, string animationName)
+    {
+        return _animator.GetCurrentAnimatorStateInfo(layerIndex).IsName(animationName);
+    }
 }

@@ -71,4 +71,9 @@ public static class InputController
     {
         return Input.GetButtonDown("Xbox_Select_Button");
     }
+
+    public static bool IsLeftJoystickPressed()
+    {
+        return Input.GetButtonDown("Xbox_Left_Joystick_Button");
+    }
 }

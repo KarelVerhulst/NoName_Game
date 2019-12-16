@@ -15,12 +15,20 @@ public class WalkState : State
     
     public override void Tick()
     {
+
         if (_character.GetComponentInParent<HealthBehaviour>().Health <= 0)
         {
             _ac.DeadAnimation(true);
 
             return;
         }
+        else
+        {
+            _ac.DeadAnimation(false);
+        }
+
+        if (_ac.CheckIfAnimationIsPlaying(0, "Dead"))
+            return;
 
         if (InputController.GetLeftJoystick() != Vector3.zero)
         {
@@ -31,7 +39,6 @@ public class WalkState : State
         else
         {
             _character.SetState(new IdleState(_character));
-            _ac.MoveAnimation(false);
         }
 
         if (InputController.IsButtonYPressed())
@@ -44,7 +51,7 @@ public class WalkState : State
             _character.SetState(new MeleeAttackState(_character));
         }
 
-        
+
     }
 
     public override void OnStateEnter()

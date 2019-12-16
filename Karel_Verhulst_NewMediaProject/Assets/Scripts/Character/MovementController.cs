@@ -11,8 +11,9 @@ public class MovementController
 
     private BaseCharacterBehaviour _character;
     
-    private float _runTimer = 3;
     private float _acceleratorTimer = 0;
+
+    private bool _startRunning = false;
 
     public MovementController(BaseCharacterBehaviour character)
     {
@@ -24,6 +25,11 @@ public class MovementController
     {
         if (_character.CC.isGrounded)
         {
+            if (InputController.IsLeftJoystickPressed())
+            {
+                _startRunning = true;
+            }
+
             IncreaseSpeedAfterTime();
             
             ApplyMovement(movement);
@@ -46,9 +52,7 @@ public class MovementController
 
     private void IncreaseSpeedAfterTime()
     {
-        _runTimer -= Time.deltaTime;
-
-        if (_runTimer <= 0)
+        if (_startRunning)
         {
             _character.CurrentSpeed = Mathf.SmoothStep(_character.MoveSpeed.x, _character.MoveSpeed.y, _acceleratorTimer / _character.Accelerator);
             _acceleratorTimer += Time.deltaTime;
