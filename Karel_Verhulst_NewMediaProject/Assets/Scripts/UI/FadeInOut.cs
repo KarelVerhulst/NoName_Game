@@ -7,7 +7,7 @@ public class FadeInOut : MonoBehaviour
     [SerializeField]
     private float _lerpTime = 1;
     [SerializeField]
-    private CanvasGroup _uiElement;
+    private CanvasGroup _uiElement = null;
 
     public void FadeIn()
     {

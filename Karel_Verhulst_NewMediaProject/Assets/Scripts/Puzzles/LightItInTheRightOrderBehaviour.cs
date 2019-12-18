@@ -12,11 +12,12 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
     private List<GameObject> _listOfEnemies = new List<GameObject>();
     [SerializeField]
     private Transform _puzzleViewCamera = null;
+
+    private AudioSource _failSound = null;
     
     private List<int> _correctOrderPosition = new List<int>();
     
     private float _timer = 5;
-    private Transform _oldCameraPosition = null;
 
     private bool _oneTime = false;
 
@@ -26,6 +27,8 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _failSound = this.GetComponent<AudioSource>();
+
         for (int i = 0; i < _listOfEnemies.Count; i++)
         {
             _correctOrderPosition.Add(i);
@@ -49,6 +52,7 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
         }
         else
         {
+            _failSound.Play();
             ResetOrderPuzzle();
         }
     }
@@ -57,22 +61,28 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
     {
         IsPuzzleFinished = true;
 
-        if (_timer <= 0)
-        {
-            if (!_oneTime)
-            {
-                //Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _oldCameraPosition.position, Time.deltaTime * 50);
-                //Camera.main.transform.position = _oldCameraPosition.position;
-                _oneTime = true;
-            }
-        }
-        else
+        //if (_timer <= 0)
+        //{
+        //    if (!_oneTime)
+        //    {
+        //        _oneTime = true;
+        //    }
+        //}
+        //else
+        //{
+        //    _timer -= Time.deltaTime;
+        //    _gateAnimation.Play("SpikesDoorAnimation");
+        //    _puzzleAnimation.Play("PuzzleAnimation");
+
+        //    Camera.main.transform.position = _puzzleViewCamera.position;
+        //}
+
+        if (_timer > 0)
         {
             _timer -= Time.deltaTime;
             _gateAnimation.Play("SpikesDoorAnimation");
-            _puzzleAnimation.Play("PuzzleAnimation"); 
+            _puzzleAnimation.Play("PuzzleAnimation");
 
-            //Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, _puzzleViewCamera.position, Time.deltaTime * 50);
             Camera.main.transform.position = _puzzleViewCamera.position;
         }
     }

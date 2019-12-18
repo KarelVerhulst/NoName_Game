@@ -9,7 +9,7 @@ public class TreeTrunkBehaviour2 : MonoBehaviour
      */
 
     [SerializeField]
-    private Transform[] Waypoints;
+    private Transform[] Waypoints = null;
     [SerializeField]
     private float _speed = 1;
     [SerializeField]

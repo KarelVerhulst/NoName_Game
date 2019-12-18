@@ -7,13 +7,9 @@ public class WolfBehaviour : BaseCharacterBehaviour
     [SerializeField]
     private GameObject _dragon = null;
     [SerializeField]
-    private float _waitTime = 1;
-    [SerializeField]
     private GameObject _shield = null;
     
     public bool IsShieldActive { get; set; }
-
-    private float _time = 0;
 
     // Start is called before the first frame update
     void Start()
