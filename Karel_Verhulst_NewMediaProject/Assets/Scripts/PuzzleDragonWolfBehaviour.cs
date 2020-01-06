@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PuzzleDragonWolfBehaviour : MonoBehaviour
 {
+    /* 
+     * Rotate a puzzle piece
+     * And destroy it if the character want to collect it
+     */
+
     [SerializeField]
     private float _speed = 10;
 

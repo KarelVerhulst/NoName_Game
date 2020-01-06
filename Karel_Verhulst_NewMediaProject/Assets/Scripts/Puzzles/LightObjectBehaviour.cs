@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LightObjectBehaviour : MonoBehaviour
 {
+    /*
+     *  the behaviour of an enemie
+     */
     [SerializeField]
     private Transform _shootObject = null;
     [SerializeField]

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class SplitState : State
 {
+    /*
+     * in my first iteration this was my splitting script to split the character
+     * But for now i don't use it
+     * still in process
+     */
+
     private Transform _newPosition = null;
 
     public SplitState(ICharacter character, Transform newPosition) : base(character)

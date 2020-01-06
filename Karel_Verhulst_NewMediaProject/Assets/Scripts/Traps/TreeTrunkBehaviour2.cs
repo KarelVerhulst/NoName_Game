@@ -6,6 +6,9 @@ public class TreeTrunkBehaviour2 : MonoBehaviour
 {
     /*
      * https://answers.unity.com/questions/29751/gradually-moving-an-object-up-to-speed-rather-then.html
+     * 
+     * tree is moving between points as a trap
+     * if the character hit this, it die
      */
 
     [SerializeField]

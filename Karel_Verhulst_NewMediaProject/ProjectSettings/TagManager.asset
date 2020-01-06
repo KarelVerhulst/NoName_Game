@@ -10,6 +10,7 @@ TagManager:
   - EnemyBullet
   - WolfShield
   - Ground
+  - Bolt
   layers:
   - Default
   - TransparentFX
@@ -23,9 +24,9 @@ TagManager:
   - Ground
   - Platform
   - Character
-  - 
-  - 
-  - 
+  - Enemy
+  - Spikes
+  - Test
   - 
   - 
   - 

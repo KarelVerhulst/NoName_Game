@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MeleeAttackState : State
 {
+    /*
+     * his melee attack goes here but for now i don't use this script
+     */
+
     public MeleeAttackState(ICharacter character) : base(character)
     {
     }
@@ -12,7 +16,7 @@ public class MeleeAttackState : State
     {
         //Debug.Log("Melee attack");
 
-        if (InputController.GetLeftJoystick() != Vector3.zero)
+        if (_character.Movement != Vector3.zero)
         {
             _character.SetState(new WalkState(_character));
         }

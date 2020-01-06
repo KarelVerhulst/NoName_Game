@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PortalBehaviour : MonoBehaviour
 {
+    /*
+     * still work in progress
+     * when the character walks into a portal the character split in two
+     */
+
     [SerializeField]
     private Transform _newPosition = null;
     [SerializeField]

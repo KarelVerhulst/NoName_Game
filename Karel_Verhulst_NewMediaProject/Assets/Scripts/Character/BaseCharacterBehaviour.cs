@@ -4,6 +4,11 @@ using UnityEngine;
 
 public abstract class BaseCharacterBehaviour : MonoBehaviour, ICharacter
 {
+    /*
+     * the base character where you find the fields, properties and methods that both characters need
+     * Parent class
+     */
+
     // fields
     [SerializeField]
     private Vector2 _moveSpeed = new Vector2(5,8); //min speed and max speed
@@ -40,9 +45,9 @@ public abstract class BaseCharacterBehaviour : MonoBehaviour, ICharacter
     public float RotateSpeed { get { return _rotateSpeed; } }
     public float JumpSpeed { get { return _jumpSpeed; }  }
     public float Gravity { get { return _gravity; } }
-    public Vector3 Movement { get; set; }
 
     public bool IsCharacterSplit { get; set; }
+    public Vector3 Movement { get; set; }
 
     void Awake()
     {

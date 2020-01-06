@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class LightItInTheRightOrderBehaviour : MonoBehaviour
 {
+    /*
+     * control if the player hit the enemies in the right order
+     * if not reset everything and play the failsound
+     * if it is correct the camera moved to a position in the world so the player see that the gate is opening and that a puzzle piece is showing
+     */
     [SerializeField]
     private Animation _gateAnimation = null;
     [SerializeField]
@@ -13,14 +18,15 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
     [SerializeField]
     private Transform _puzzleViewCamera = null;
 
+    [SerializeField]
+    private BaseCamera _camera = null;
+
     private AudioSource _failSound = null;
     
     private List<int> _correctOrderPosition = new List<int>();
     
     private float _timer = 5;
-
-    private bool _oneTime = false;
-
+    
     public bool IsPuzzleFinished { get; set; }
     public List<int> ListOfPositionItHit = new List<int>();
 
@@ -61,30 +67,21 @@ public class LightItInTheRightOrderBehaviour : MonoBehaviour
     {
         IsPuzzleFinished = true;
 
-        //if (_timer <= 0)
-        //{
-        //    if (!_oneTime)
-        //    {
-        //        _oneTime = true;
-        //    }
-        //}
-        //else
-        //{
-        //    _timer -= Time.deltaTime;
-        //    _gateAnimation.Play("SpikesDoorAnimation");
-        //    _puzzleAnimation.Play("PuzzleAnimation");
-
-        //    Camera.main.transform.position = _puzzleViewCamera.position;
-        //}
-
         if (_timer > 0)
         {
             _timer -= Time.deltaTime;
             _gateAnimation.Play("SpikesDoorAnimation");
             _puzzleAnimation.Play("PuzzleAnimation");
 
+            _camera._target = null;
             Camera.main.transform.position = _puzzleViewCamera.position;
+
         }
+        else
+        {
+            _camera._target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
     }
 
     private void ResetOrderPuzzle()

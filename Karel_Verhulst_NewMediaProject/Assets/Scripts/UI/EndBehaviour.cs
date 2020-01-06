@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class EndBehaviour : MonoBehaviour
 {
+
+    /*
+     * if the character reach the end the screen will fade in and after some seconds you go back to the startscreen
+     */
+
     [SerializeField]
     private float _waitTimer = 5;
 
@@ -26,8 +31,7 @@ public class EndBehaviour : MonoBehaviour
     {
         if (other.TryGetComponent<BaseCharacterBehaviour>(out BaseCharacterBehaviour character))
         {
-           // this.GetComponent<FadeInOut>().FadeIn();
-
+            // after some time the scene change to the start screen
             _waitTimer -= Time.deltaTime;
 
             if (_waitTimer <= 0)

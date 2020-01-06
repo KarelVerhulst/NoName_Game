@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MovementController
 {
+    /*
+     * Actual movement code, so the character can move in the world
+     */
+
     private Vector3 _moveDirection = Vector3.zero;
     private float _vertical = 0.0f;
     private float _horizontal = 0.0f;
@@ -21,7 +25,7 @@ public class MovementController
         _character.CurrentSpeed = _character.MoveSpeed.x; 
     }
 
-    public void UpdateMovement(Vector3 movement, bool jump)
+    public void UpdateMovement(bool jump)
     {
         if (_character.CC.isGrounded)
         {
@@ -32,7 +36,7 @@ public class MovementController
 
             IncreaseSpeedAfterTime();
             
-            ApplyMovement(movement);
+            ApplyMovement(_character.Movement);
             RotateCharacterToDirection();
             Jump(jump);
         }
@@ -67,9 +71,6 @@ public class MovementController
     {
         // reset movement
         _moveDirection = Vector3.zero;
-
-        //_vertical = InputController.GetLeftJoystick().z;
-        //_horizontal = InputController.GetLeftJoystick().x;
 
         _vertical = movement.z;
         _horizontal = movement.x;

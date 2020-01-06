@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DragonBehaviour : BaseCharacterBehaviour
 {
+    /*
+     * child class -> dragon
+     */
     [SerializeField]
     private GameObject _wolf = null;
     [SerializeField]
@@ -21,7 +24,7 @@ public class DragonBehaviour : BaseCharacterBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _time = _waitTime;
+        _time = 0;
     }
     // Update is called once per frame
     protected override void Update()
@@ -32,47 +35,39 @@ public class DragonBehaviour : BaseCharacterBehaviour
         {
             SetState(new TransformState(this, _wolf));
         }
-        
+
+        PressMagicTrigger();
+    }
+
+    private void PressMagicTrigger()
+    {
         bool newTriggerHeld = InputController.GetRightTrigger() > 0f;
         if (newTriggerHeld && this.GetComponentInParent<HealthBehaviour>().Health > 0)
         {
-            
-            if (!this.GetComponentInParent<ManaBehaviour>().IsManaEmpty)
-            {
-                this.GetComponentInParent<ManaBehaviour>().TrySpendMana(_spendingAmountOfMana);
-
-                _time -= Time.deltaTime;
-
-                if (_time <= 0)
-                {
-
-                    GameObject bullet = Instantiate(_projectile, _shootPosition.position, this.transform.rotation) as GameObject;
-                    bullet.GetComponent<DragonBullet>().ShootPostion = _shootPosition.forward;
-
-                    SetState(new MagicAttackState(this));
-
-                    _time = _waitTime;
-                }
-            }
-            
+            DragonMagicAttack();
         }
         else
         {
             this.GetComponentInParent<ManaBehaviour>().IsManaEmpty = false;
             this.GetComponentInParent<ManaBehaviour>().FillManaAmount();
         }
+    }
 
-        //if (!oldTriggerHeld && newTriggerHeld) {
-        //    GameObject bullet = Instantiate(_projectile, _shootPosition.position, Quaternion.identity) as GameObject;
-        //    bullet.GetComponent<DragonBullet>().ShootPostion = _shootPosition.forward;
-            
-        //    SetState(new MagicAttackState(this));
+    public void DragonMagicAttack()
+    {
+        if (!this.GetComponentInParent<ManaBehaviour>().IsManaEmpty)
+        {
+            this.GetComponentInParent<ManaBehaviour>().TrySpendMana(_spendingAmountOfMana);
 
-        //}
+            _time -= Time.deltaTime;
 
-        //oldTriggerHeld = newTriggerHeld;
+            if (_time <= 0)
+            {
+                GameObject bullet = Instantiate(_projectile, _shootPosition.position, this.transform.rotation) as GameObject;
+                bullet.GetComponent<DragonBullet>().ShootPostion = _shootPosition.forward;
 
-
-
+                _time = _waitTime;
+            }
+        }
     }
 }

@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class TransformBehaviour : MonoBehaviour
 {
+    /*
+     * everything about the transform UI and if it is possible to transform or not
+     */
+
     [SerializeField]
     private Image _transformImage = null;
     [SerializeField]
@@ -20,8 +24,6 @@ public class TransformBehaviour : MonoBehaviour
     public bool IsTransformAvailable  { get; set; }
     public bool StartTransformCounter { get; set; }
     
-
-    // Start is called before the first frame update
     void Start()
     {
         _transformAmount = TRANSFORM_MAX;

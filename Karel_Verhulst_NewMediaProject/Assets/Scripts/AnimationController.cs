@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AnimationController 
 {
+    /*
+     * all the animation params are listed here
+     */
     private Animator _animator;
 
     public AnimationController(Animator animator)

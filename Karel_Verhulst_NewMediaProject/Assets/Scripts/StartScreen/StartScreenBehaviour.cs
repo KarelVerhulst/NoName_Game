@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class StartScreenBehaviour : MonoBehaviour
 {
+    /*
+     *  methods to do an action on the startscreen
+     */
+
     private void Start()
     {
         Cursor.visible = false;

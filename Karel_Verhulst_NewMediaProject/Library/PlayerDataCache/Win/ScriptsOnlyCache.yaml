@@ -119,33 +119,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11472}
     - Class: 114
-      Script: {instanceID: 11684}
+      Script: {instanceID: 11686}
     - Class: 114
-      Script: {instanceID: 11716}
+      Script: {instanceID: 11718}
     - Class: 114
-      Script: {instanceID: 11772}
+      Script: {instanceID: 11774}
     - Class: 114
-      Script: {instanceID: 11950}
+      Script: {instanceID: 11952}
     - Class: 114
-      Script: {instanceID: 12090}
+      Script: {instanceID: 12094}
     - Class: 114
-      Script: {instanceID: 12184}
+      Script: {instanceID: 12188}
     - Class: 114
-      Script: {instanceID: 12354}
+      Script: {instanceID: 12358}
     - Class: 114
-      Script: {instanceID: 12410}
+      Script: {instanceID: 12414}
     - Class: 114
-      Script: {instanceID: 12456}
+      Script: {instanceID: 12460}
     - Class: 114
-      Script: {instanceID: 12574}
+      Script: {instanceID: 12578}
     - Class: 114
-      Script: {instanceID: 12886}
+      Script: {instanceID: 12890}
     - Class: 114
-      Script: {instanceID: 12896}
+      Script: {instanceID: 12900}
     - Class: 114
-      Script: {instanceID: 12910}
+      Script: {instanceID: 12914}
     - Class: 114
-      Script: {instanceID: 12996}
+      Script: {instanceID: 13000}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -220,13 +220,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10902}
     - Class: 114
-      Script: {instanceID: 11588}
+      Script: {instanceID: 11500}
     - Class: 114
-      Script: {instanceID: 12354}
+      Script: {instanceID: 11590}
     - Class: 114
-      Script: {instanceID: 12996}
+      Script: {instanceID: 12358}
     - Class: 114
-      Script: {instanceID: 29120}
+      Script: {instanceID: 13000}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -668,6 +668,12 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StartScreenBehaviour
+  - hash:
+      serializedVersion: 2
       Hash: 50c443b12ccc0b475183318b5088bcc5
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
@@ -716,7 +722,7 @@ ScriptsOnlyBuild:
     className: LWRPAdditionalLightData
   - hash:
       serializedVersion: 2
-      Hash: e4ed1da07783dc2184a70e9aafef2f26
+      Hash: 7b85019c84bfd4dc8a0e79dded62a217
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LightItInTheRightOrderBehaviour
@@ -1026,12 +1032,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: StartScreenBehaviour
   platform: 5
   scenePathNames:
   - Assets/Scenes/StartScreen.unity

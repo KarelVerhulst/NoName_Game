@@ -4,6 +4,10 @@ using UnityEngine;
 
 public static class InputController
 {
+    /*
+     * all the input are listed here
+     */
+
     //button names
     private static string _nameButtonA = "XboxA_Button";
     private static string _nameButtonB = "XboxB_Button";

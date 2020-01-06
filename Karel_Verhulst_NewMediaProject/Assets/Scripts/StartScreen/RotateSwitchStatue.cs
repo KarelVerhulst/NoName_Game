@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RotateSwitchStatue : MonoBehaviour
 {
+    //rotate the statue and after some time change the character
     [SerializeField]
     private float _speed = 10;
 

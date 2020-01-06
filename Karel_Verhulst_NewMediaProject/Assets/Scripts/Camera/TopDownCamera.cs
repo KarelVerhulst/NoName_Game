@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class TopDownCamera : BaseCamera
 {
+    /*
+     * specific script for a topDowncamera and it behaviour
+     */
+
     [SerializeField]
     private float _smoothSpeed = 0.5f;
     [SerializeField]
@@ -17,6 +21,7 @@ public class TopDownCamera : BaseCamera
     {
         base.HandleCamera();
 
+        // possible to zoom in and out using the right joystick
         ZoomBehaviour();
 
         Vector3 worldposition = (Vector3.forward * -_distance) + (Vector3.up * _height);
@@ -28,7 +33,7 @@ public class TopDownCamera : BaseCamera
         Vector3 desiredPosition = _target.position + worldposition;
 
         this.transform.position = Vector3.Slerp(transform.position, desiredPosition, Time.deltaTime * _smoothSpeed);
-       // this.transform.LookAt(_target);
+        //this.transform.LookAt(_target);
     }
 
     private void ZoomBehaviour()

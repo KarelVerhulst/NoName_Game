@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class JumpState : State
 {
+    /*
+     * all the jump behaviour parts goes here
+     */
+
     private Vector3 _moveDirection = Vector3.zero;
 
     private MovementController _mc;
@@ -17,31 +21,7 @@ public class JumpState : State
 
     public override void Tick()
     {
-        
-        if (_character.CC.isGrounded)
-        {
-            _mc.UpdateMovement(InputController.GetLeftJoystick(),true);
-            _jump = true;
-        }
-        else
-        {
-            _mc.UpdateMovement(InputController.GetLeftJoystick(), false);
-
-            if (_character.CC.isGrounded)
-            {
-                if (InputController.GetLeftJoystick() != Vector3.zero)
-                {
-                    _character.SetState(new WalkState(_character));
-                }
-                else
-                {
-                    _character.SetState(new IdleState(_character));
-                }
-                _jump = false;
-            }
-        }
-
-        _ac.JumpAnimation(_jump, _character.GetJumpDistanceToGround());
+        Jump();
     }
 
 
@@ -53,4 +33,37 @@ public class JumpState : State
         _ac = new AnimationController(_character.Animator);
     }
     
+    private void Jump()
+    {
+        if (_character.CC.isGrounded)
+        {
+            _mc.UpdateMovement(true);
+            _jump = true;
+        }
+        else
+        {
+            _mc.UpdateMovement(false);
+
+            if (_character.CC.isGrounded)
+            {
+                SetCorrectMovementState();
+               
+                _jump = false;
+            }
+        }
+
+        _ac.JumpAnimation(_jump, _character.GetJumpDistanceToGround());
+    }
+
+    private void SetCorrectMovementState()
+    {
+        if (_character.Movement != Vector3.zero)
+        {
+            _character.SetState(new WalkState(_character));
+        }
+        else
+        {
+            _character.SetState(new IdleState(_character));
+        }
+    }
 }

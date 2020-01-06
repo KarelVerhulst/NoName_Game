@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class HealthBehaviour : MonoBehaviour
 {
+    /*
+     * everything about the health is here
+     */
     [SerializeField]
     private GameObject[] _arrayOfHealth = null;
     
@@ -19,10 +22,10 @@ public class HealthBehaviour : MonoBehaviour
     {
         Health = _arrayOfHealth.Length;
 
-        StartCoroutine(Test());
+        StartCoroutine(UpdateHealthColor());
     }
 
-    IEnumerator Test()
+    IEnumerator UpdateHealthColor()
     {
         while (true)
         {

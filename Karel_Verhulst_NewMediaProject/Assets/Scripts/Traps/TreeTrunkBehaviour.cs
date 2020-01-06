@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class TreeTrunkBehaviour : MonoBehaviour
 {
+    /*
+     * object is scaling in the x axis.
+     * 
+     * PROTOTYPING -> don't use this script in the game
+     */
+
     [SerializeField]
     private Vector3 _minScale = Vector3.zero;
     [SerializeField]

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BaseBullet : MonoBehaviour
 {
+    /*
+     * the parent class of the bullets
+     */
+
     [SerializeField]
     private float _projectileSpeed = 10;
     [SerializeField]
@@ -21,6 +25,7 @@ public class BaseBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //had the idea to scale the bullets but doesn't look good with the VFX bullets
         //StartCoroutine(ScaleProjectile());
     }
 

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class FadeInOut : MonoBehaviour
 {
+    /*
+     *  Fade in or fade out a canvasgroup
+     */
+
     [SerializeField]
     private float _lerpTime = 1;
     [SerializeField]

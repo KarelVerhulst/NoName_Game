@@ -4805,6 +4805,9 @@ MonoBehaviour:
   _maxSize: 1
   _growFactor: 0.5
   _waitTime: 1.5
+  _mask:
+    serializedVersion: 2
+    m_Bits: 6144
 --- !u!54 &5592925764613588064
 Rigidbody:
   m_ObjectHideFlags: 0

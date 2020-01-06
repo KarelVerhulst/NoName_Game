@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class MagicAttackState : State
 {
+    /*
+     * magic attacks goes here
+     * but because of some problems the real magic attack is placed in the dragon and wolf script
+     */
+
     public MagicAttackState(ICharacter character) : base(character)
     {
       
@@ -12,21 +17,10 @@ public class MagicAttackState : State
    
     public override void Tick()
     {
+        //SetMagicAttack();
 
-
-        if (InputController.GetLeftJoystick() != Vector3.zero)
-        {
-            _character.SetState(new WalkState(_character));
-        }
-        else
-        {
-            _character.SetState(new IdleState(_character));
-        }
-
-        if (InputController.IsButtonYPressed())
-        {
-            _character.SetState(new JumpState(_character));
-        }
+        StateInputController.MoveState(_character);
+        StateInputController.JumpState(_character);
     }
 
     public override void OnStateEnter()
@@ -34,4 +28,15 @@ public class MagicAttackState : State
         
     }
     
+    private void SetMagicAttack()
+    {
+        if (_character.GetComponent<DragonBehaviour>())
+        {
+            _character.GetComponent<DragonBehaviour>().DragonMagicAttack();
+        }
+        else if(_character.GetComponent<WolfBehaviour>())
+        {
+            _character.GetComponent<WolfBehaviour>().WolfMagicAttack();
+        }
+    }
 }

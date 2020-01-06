@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CheckCurrentObjectIsTrigger : MonoBehaviour
 {
+    /*
+     * check if the torchlight is hit or not
+     * if a bullet hit this trigger the position is added to the list
+     */
     [Range(0, 5)]
     [SerializeField]
     private int _orderPosition = 0;

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class HiddenWallBehaviour : MonoBehaviour
 {
+    /*
+     * DON'T USE THIS SCRIPT ANYMORE
+     *  if the character was inside the trigger the color changed of a wall and the wolf could go inside 
+     *  PROTOTYPING
+     */
     [SerializeField]
     private BoxCollider _wallCollider = null;
     [SerializeField]

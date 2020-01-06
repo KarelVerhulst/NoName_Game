@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlatformDisolveBehaviour : MonoBehaviour
 {
+    /*
+     * use the dissolve shader together with this script so after some time a platform dissolve and the character falls down
+     */
+
     [SerializeField]
     private List<Material> _disolveMaterials = new List<Material>();
     [SerializeField]

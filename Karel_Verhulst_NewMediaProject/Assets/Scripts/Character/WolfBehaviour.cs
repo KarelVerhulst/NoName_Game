@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class WolfBehaviour : BaseCharacterBehaviour
 {
+    /*
+     * child class -> wolf
+     */
+
     [SerializeField]
     private GameObject _dragon = null;
     [SerializeField]
@@ -27,35 +31,41 @@ public class WolfBehaviour : BaseCharacterBehaviour
             SetState(new TransformState(this, _dragon));
         }
 
+        PressMagicTrigger();
+    }
+
+    private void PressMagicTrigger()
+    {
         bool newTriggerHeld = InputController.GetRightTrigger() > 0f;
         if (newTriggerHeld && this.GetComponentInParent<HealthBehaviour>().Health > 0)
         {
+            WolfMagicAttack();
+        }
+        else
+        {
+            _shield.SetActive(false);
 
-            if (!this.GetComponentInParent<ManaBehaviour>().IsManaEmpty)
-            {
-                this.GetComponentInParent<ManaBehaviour>().TrySpendMana(_spendingAmountOfMana);
+            this.GetComponentInParent<ManaBehaviour>().IsManaEmpty = false;
+            this.GetComponentInParent<ManaBehaviour>().FillManaAmount();
+        }
+    }
 
-                //_shield.SetActive(true);
-                IsShieldActive = true;
+    public void WolfMagicAttack()
+    {
+        if (!this.GetComponentInParent<ManaBehaviour>().IsManaEmpty)
+        {
+            this.GetComponentInParent<ManaBehaviour>().TrySpendMana(_spendingAmountOfMana);
 
-            }
-            else
-            {
-                //_shield.SetActive(false);
-                IsShieldActive = false;
-            }
+            //_shield.SetActive(true);
+            IsShieldActive = true;
 
         }
         else
         {
             //_shield.SetActive(false);
             IsShieldActive = false;
-            this.GetComponentInParent<ManaBehaviour>().IsManaEmpty = false;
-            this.GetComponentInParent<ManaBehaviour>().FillManaAmount();
         }
 
         _shield.SetActive(IsShieldActive);
     }
-
-
 }

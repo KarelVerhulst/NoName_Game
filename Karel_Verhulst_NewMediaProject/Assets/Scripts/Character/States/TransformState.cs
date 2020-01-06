@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class TransformState : State
 {
+    /*
+     * this transform the character to another one
+     * for example from dragon to wolf and set the state back to idle
+     */
+
     private GameObject _newCharacter;
 
     public TransformState(ICharacter character, GameObject newCharacter) : base(character)
@@ -19,8 +24,8 @@ public class TransformState : State
     {
         _newCharacter.SetActive(true);
         _character.gameObject.SetActive(false);
-        
-        _character.SetState(new IdleState(_character));
+
+        StateInputController.MoveState(_character);
     }
 
     public override void OnStateEnter()

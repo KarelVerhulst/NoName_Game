@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class RespawnBehaviour : MonoBehaviour
 {
+    /*
+     * if the character died you can choose where he is going to respawn
+     */
+
     [SerializeField]
     private Transform _respawnPostion = null;
 
@@ -12,21 +16,19 @@ public class RespawnBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_useTrigger)
+        if (other.TryGetComponent(out BaseCharacterBehaviour character))
         {
-            if (other.TryGetComponent(out BaseCharacterBehaviour character))
+            if (_useTrigger)
             {
-                other.GetComponentInParent<HealthBehaviour>().Health = 0;
+                //if you use the trigger the characters health is zero -> dead animation is playing
+               
+                 other.GetComponentInParent<HealthBehaviour>().Health = 0;
+                other.GetComponentInParent<HealthBehaviour>().RespawnPoint = _respawnPostion;
+            }
+            else
+            {
                 other.GetComponentInParent<HealthBehaviour>().RespawnPoint = _respawnPostion;
             }
         }
-        else
-        {
-            if (other.TryGetComponent(out BaseCharacterBehaviour character))
-            {
-                other.GetComponentInParent<HealthBehaviour>().RespawnPoint = _respawnPostion;
-            }
-        }
-        
     }
 }

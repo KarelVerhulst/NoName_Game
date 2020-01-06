@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class ManaBehaviour : MonoBehaviour
 {
+    /*
+     * everything about the mana (that is used to attack with magic)
+     */
     [SerializeField]
     private List<Image> _listOfManas = new List<Image>();
     [SerializeField]
@@ -17,8 +20,7 @@ public class ManaBehaviour : MonoBehaviour
     public bool IsManaEmpty { get; set; }
 
     int index = 0;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         _manaAmount = MANA_MAX;
@@ -27,18 +29,6 @@ public class ManaBehaviour : MonoBehaviour
     
     public void TrySpendMana(float amount)
     {
-        //if (_manaAmount <= 1.5f)
-        //{
-        //    IsManaEmpty = true;
-        //    return;
-        //}
-        //if (_manaAmount >= amount && !IsManaEmpty)
-        //{
-        //    _manaAmount -= amount * (_manaReduceSpeed * Time.deltaTime);
-        //    _mana.fillAmount = GetManaNormalized();
-        //}
-       
-        
         if (index == _listOfManas.Count)
         {
             IsManaEmpty = true;
@@ -64,14 +54,7 @@ public class ManaBehaviour : MonoBehaviour
         
         _manaAmount += _manaRegenAmount * Time.deltaTime;
         _manaAmount = Mathf.Clamp(_manaAmount, 0f, MANA_MAX);
-
-        //_mana.fillAmount = GetManaNormalized();
-
-        //if (index == 0)
-        //{
-        //    IsManaEmpty = false;
-        //}
-
+        
         if (_manaAmount >= 100 && index > 0)
         {
             index--;

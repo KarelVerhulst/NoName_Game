@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MouthGateBehaviour : MonoBehaviour
 {
+    /*
+     * use animation to open the mouth of the model
+     */
+
     [SerializeField]
     private Animation _mouthOpenAnimation = null;
 
@@ -12,7 +16,7 @@ public class MouthGateBehaviour : MonoBehaviour
     [SerializeField]
     private bool _isWolf = false;
 
-    private bool Test = false;
+    private bool _isCharacterInTheTrigger = false;
 
     private const string OPENWOLF = "Open Wolf Mouth";
     private const string CLOSEWOLF = "Close Wolf Mouth";
@@ -23,13 +27,13 @@ public class MouthGateBehaviour : MonoBehaviour
     {
         if (other.GetComponent<WolfBehaviour>() && _isWolf)
         {
-            Test = true;
+            _isCharacterInTheTrigger = true;
             PlayMouthAnimation(OPENWOLF);
         }
 
         if (other.GetComponent<DragonBehaviour>() && _isDragon)
         {
-            Test = true;
+            _isCharacterInTheTrigger = true;
             PlayMouthAnimation(OPENDRAGON);
         }
     }
@@ -37,7 +41,7 @@ public class MouthGateBehaviour : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         
-        if (Test && (other.GetComponent<WolfBehaviour>()|| other.GetComponent<DragonBehaviour>()))
+        if (_isCharacterInTheTrigger && (other.GetComponent<WolfBehaviour>() || other.GetComponent<DragonBehaviour>()))
         {
             if (_isDragon)
             {
@@ -49,7 +53,7 @@ public class MouthGateBehaviour : MonoBehaviour
                 PlayMouthAnimation(CLOSEWOLF);
             }
 
-            Test = false; 
+            _isCharacterInTheTrigger = false; 
         }
     }
 
